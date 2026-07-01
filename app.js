@@ -34,10 +34,12 @@ function setRecipeTags(recipeId, tags){ customTags[recipeId] = [...new Set(tags.
 function emptyMacros(){return {calories:0,protein:0,carbs:0,fat:0,fibre:0,addedSugar:0,naturalSugar:0,totalSugar:0};}
 function addMacros(a,b){ for(const key of Object.keys(a)) a[key] += b[key] || 0; a.totalSugar = a.addedSugar + a.naturalSugar; return a; }
 function ingredientMacros(ingredient, amount){
-  const m = emptyMacros(); if(!ingredient) return m;
+  const m = emptyMacros();
+  if(!ingredient) return m;
   const factor = ['item','scoop','can','pack'].includes(ingredient.unit) ? amount : amount / 100;
   for(const key of ['calories','protein','carbs','fat','fibre','addedSugar','naturalSugar']) m[key] = (ingredient[key] || 0) * factor;
-  m.totalSugar = m.addedSugar + m.naturalSugar; return m;
+  m.totalSugar = m.addedSugar + m.naturalSugar;
+  return m;
 }
 function recipeMacrosFromIngredients(items){ const total = emptyMacros(); (items || []).forEach(item => addMacros(total, ingredientMacros(ingredientMap.get(item.ingredientId), Number(item.amount || 0)))); return total; }
 function recipeMacros(recipe){
@@ -48,9 +50,16 @@ function recipeMacros(recipe){
 function macroHTML(m){ return `<div class="macro"><strong>${fmt(m.calories)}</strong><span>kcal</span></div><div class="macro"><strong>${fmt(m.protein)}g</strong><span>protein</span></div><div class="macro"><strong>${fmt(m.carbs)}g</strong><span>carbs</span></div><div class="macro"><strong>${fmt(m.fat)}g</strong><span>fat</span></div><div class="macro"><strong>${fmt(m.fibre)}g</strong><span>fibre</span></div>`; }
 function sugarText(m){ return `Added sugar: ${fmt(m.addedSugar)}g · Natural sugar: ${fmt(m.naturalSugar)}g · Total sugar: ${fmt(m.totalSugar)}g`; }
 function ingredientUnitLabel(ing){ return ing && ['item','scoop','can','pack'].includes(ing.unit) ? ing.unit : 'g'; }
-function findIngredientByInput(value){ const q = String(value || '').toLowerCase().trim(); if(!q) return null; return ingredients.find(i => i.name.toLowerCase() === q || i.id.toLowerCase() === q) || ingredients.find(i => i.name.toLowerCase().includes(q) || i.id.toLowerCase().includes(q)); }
+function findIngredientByInput(value){
+  const q = String(value || '').toLowerCase().trim();
+  if(!q) return null;
+  return ingredients.find(i => i.name.toLowerCase() === q || i.id.toLowerCase() === q) || ingredients.find(i => i.name.toLowerCase().includes(q) || i.id.toLowerCase().includes(q));
+}
 function refreshAllRecipes(){ recipes = baseRecipes.map(r => ({...r, ingredients:[...(recipeEdits[r.id]?.ingredients || r.ingredients || [])]})).concat(customRecipes); }
-function persistRecipe(recipe){ if(recipe.custom){ customRecipes = customRecipes.map(r => r.id === recipe.id ? recipe : r); saveCustomRecipes(); } else { recipeEdits[recipe.id] = {...(recipeEdits[recipe.id] || {}), ingredients: recipe.ingredients}; saveRecipeEdits(); } }
+function persistRecipe(recipe){
+  if(recipe.custom){ customRecipes = customRecipes.map(r => r.id === recipe.id ? recipe : r); saveCustomRecipes(); }
+  else { recipeEdits[recipe.id] = {...(recipeEdits[recipe.id] || {}), ingredients: recipe.ingredients}; saveRecipeEdits(); }
+}
 
 function setupTabs(){
   document.querySelectorAll('.tab-button').forEach(btn => btn.addEventListener('click', () => {
@@ -63,21 +72,35 @@ function setupTabs(){
 }
 
 function refreshTagFilter(){
-  const tagFilter = document.getElementById('tagFilter'); const selected = tagFilter.value;
+  const tagFilter = document.getElementById('tagFilter');
+  const selected = tagFilter.value;
   const tags = [...new Set(recipes.flatMap(getRecipeTags))].sort((a,b)=>a.localeCompare(b));
   tagFilter.innerHTML = '<option value="">All tags</option>';
   tags.forEach(t => tagFilter.insertAdjacentHTML('beforeend', `<option value="${escapeHTML(t)}">${escapeHTML(t)}</option>`));
   tagFilter.value = tags.includes(selected) ? selected : '';
 }
 function renderTagChips(recipe){ return getRecipeTags(recipe).map(t => `<span class="tag">${escapeHTML(t)} <button type="button" class="tag-x" data-remove-tag="${escapeHTML(recipe.id)}" data-tag="${escapeHTML(t)}" aria-label="Remove ${escapeHTML(t)} tag">×</button></span>`).join(''); }
+
 function renderRecipes(){
-  const q = document.getElementById('search').value.toLowerCase().trim(); const tag = document.getElementById('tagFilter').value; const grid = document.getElementById('recipeGrid'); grid.innerHTML = '';
-  const matchingRecipes = recipes.filter(r => { const tags = getRecipeTags(r); const ingredientNames = (r.ingredients || []).map(item => ingredientMap.get(item.ingredientId)?.name || item.ingredientId); const text = [r.name, ...tags, ...ingredientNames, ...(r.method||[]), ...(r.seasoning||[])].join(' ').toLowerCase(); return (!q || text.includes(q)) && (!tag || tags.includes(tag)); });
-  if(!matchingRecipes.length){ grid.innerHTML = '<article class="card"><h2>No recipes found</h2><p class="seasoning">Try a different keyword or tag.</p></article>'; return; }
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const tag = document.getElementById('tagFilter').value;
+  const grid = document.getElementById('recipeGrid');
+  grid.innerHTML = '';
+  const matchingRecipes = recipes.filter(r => {
+    const tags = getRecipeTags(r);
+    const ingredientNames = (r.ingredients || []).map(item => ingredientMap.get(item.ingredientId)?.name || item.ingredientId);
+    const text = [r.name, ...tags, ...ingredientNames, ...(r.method||[]), ...(r.seasoning||[])].join(' ').toLowerCase();
+    return (!q || text.includes(q)) && (!tag || tags.includes(tag));
+  });
+  if(!matchingRecipes.length){ grid.innerHTML = '<article class="card"><h2>No recipes found</h2><p class="seasoning">Try another keyword or tag.</p></article>'; return; }
   matchingRecipes.forEach(recipe => {
-    const card = document.createElement('article'); card.className = 'card';
-    const rows = recipe.ingredients.map((item, index) => { const ing = ingredientMap.get(item.ingredientId); return `<tr><td>${escapeHTML(ing ? ing.name : item.ingredientId)}</td><td><input type="number" min="0" step="1" value="${item.amount}" data-recipe="${escapeHTML(recipe.id)}" data-ingredient="${escapeHTML(item.ingredientId)}" data-row-index="${index}"></td><td>${escapeHTML(ingredientUnitLabel(ing))}</td><td><button type="button" class="small-button" data-remove-ingredient="${escapeHTML(recipe.id)}" data-index="${index}">Remove</button></td></tr>`; }).join('');
-    card.innerHTML = `<h2>${escapeHTML(recipe.name)}</h2><div class="tags">${renderTagChips(recipe)}</div><div class="tag-editor"><input type="text" placeholder="Add tag" data-tag-input="${escapeHTML(recipe.id)}"><button type="button" data-add-tag="${escapeHTML(recipe.id)}">Add</button></div><div class="macro-line" id="macros-${escapeHTML(recipe.id)}"></div><p class="seasoning" id="sugar-${escapeHTML(recipe.id)}"></p><table><thead><tr><th>Ingredient</th><th>Amount</th><th>Unit</th><th></th></tr></thead><tbody>${rows}</tbody></table><div class="ingredient-editor"><input type="search" list="ingredientDatalist" placeholder="Add ingredient" data-add-ingredient-name="${escapeHTML(recipe.id)}"><input type="number" min="0" step="1" value="100" data-add-ingredient-amount="${escapeHTML(recipe.id)}"><button type="button" data-add-ingredient="${escapeHTML(recipe.id)}">Add item</button></div><div class="card-actions"><button type="button" data-add-recipe-to-day="${escapeHTML(recipe.id)}">Add recipe to day</button>${recipe.custom ? `<button type="button" data-delete-custom-recipe="${escapeHTML(recipe.id)}">Delete recipe</button>` : ''}</div>${(recipe.seasoning||[]).length ? `<p class="seasoning"><strong>Seasoning:</strong> ${recipe.seasoning.map(escapeHTML).join(', ')}</p>` : ''}<ol class="method">${(recipe.method||[]).map(step=>`<li>${escapeHTML(step)}</li>`).join('')}</ol>`;
+    const card = document.createElement('article');
+    card.className = 'card recipe-card collapsed';
+    const rows = (recipe.ingredients || []).map((item, index) => {
+      const ing = ingredientMap.get(item.ingredientId);
+      return `<tr><td>${escapeHTML(ing ? ing.name : item.ingredientId)}</td><td><input type="number" min="0" step="1" value="${item.amount}" data-recipe="${escapeHTML(recipe.id)}" data-ingredient="${escapeHTML(item.ingredientId)}" data-row-index="${index}"></td><td>${escapeHTML(ingredientUnitLabel(ing))}</td><td><button type="button" class="small-button" data-remove-ingredient="${escapeHTML(recipe.id)}" data-index="${index}">Remove</button></td></tr>`;
+    }).join('');
+    card.innerHTML = `<div class="recipe-head"><div><h2>${escapeHTML(recipe.name)}</h2><div class="macro-line compact" id="macros-${escapeHTML(recipe.id)}"></div></div><button type="button" class="toggle-recipe" data-toggle-recipe>Expand</button></div><p class="seasoning" id="sugar-${escapeHTML(recipe.id)}"></p><div class="recipe-details"><div class="tags">${renderTagChips(recipe)}</div><div class="tag-editor"><input type="text" placeholder="Add tag" data-tag-input="${escapeHTML(recipe.id)}"><button type="button" data-add-tag="${escapeHTML(recipe.id)}">Add</button></div><table><thead><tr><th>Ingredient</th><th>Amount</th><th>Unit</th><th></th></tr></thead><tbody>${rows}</tbody></table><div class="ingredient-editor"><input type="search" list="ingredientDatalist" placeholder="Add ingredient" data-add-ingredient-name="${escapeHTML(recipe.id)}"><input type="number" min="0" step="1" value="100" data-add-ingredient-amount="${escapeHTML(recipe.id)}"><button type="button" data-add-ingredient="${escapeHTML(recipe.id)}">Add item</button></div><div class="card-actions"><button type="button" data-add-recipe-to-day="${escapeHTML(recipe.id)}">Add recipe to day</button>${recipe.custom ? `<button type="button" data-delete-custom-recipe="${escapeHTML(recipe.id)}">Delete recipe</button>` : ''}</div>${(recipe.seasoning||[]).length ? `<p class="seasoning"><strong>Seasoning:</strong> ${recipe.seasoning.map(escapeHTML).join(', ')}</p>` : ''}<ol class="method">${(recipe.method||[]).map(step=>`<li>${escapeHTML(step)}</li>`).join('')}</ol></div>`;
     grid.appendChild(card);
   });
   document.querySelectorAll('input[data-recipe]').forEach(input => input.addEventListener('input', handleIngredientAmountInput));
@@ -106,7 +129,9 @@ function saveTargetInputs(){ macroTargets = {calories:Number(document.getElement
 function hydrateTargetInputs(){ document.getElementById('targetCalories').value = macroTargets.calories; document.getElementById('targetProtein').value = macroTargets.protein; document.getElementById('targetCarbs').value = macroTargets.carbs; document.getElementById('targetFat').value = macroTargets.fat; document.getElementById('targetFibre').value = macroTargets.fibre; }
 function renderBuilder(){ const list = document.getElementById('builderIngredients'); const totalsBox = document.getElementById('builderTotals'); if(!list || !totalsBox) return; list.innerHTML = builderIngredients.length ? builderIngredients.map((item, index) => { const ing = ingredientMap.get(item.ingredientId); return `<div class="entry"><span>${escapeHTML(ing?.name || item.ingredientId)}</span><span>${fmt(item.amount)} ${escapeHTML(ingredientUnitLabel(ing))}</span><button type="button" data-builder-remove="${index}">×</button></div>`; }).join('') : '<p class="seasoning">No ingredients added yet.</p>'; totalsBox.innerHTML = macroHTML(recipeMacrosFromIngredients(builderIngredients)); }
 function handleRecipeGridClick(event){
+  const toggleButton = event.target.closest('[data-toggle-recipe]');
   const addButton = event.target.closest('[data-add-tag]'); const removeButton = event.target.closest('[data-remove-tag]'); const addIngredientButton = event.target.closest('[data-add-ingredient]'); const removeIngredientButton = event.target.closest('[data-remove-ingredient]'); const addRecipeToDayButton = event.target.closest('[data-add-recipe-to-day]'); const deleteCustomButton = event.target.closest('[data-delete-custom-recipe]');
+  if(toggleButton){ const card = toggleButton.closest('.recipe-card'); const collapsed = card.classList.toggle('collapsed'); toggleButton.textContent = collapsed ? 'Expand' : 'Minimize'; return; }
   if(addButton){ const recipeId = addButton.dataset.addTag; const recipe = recipes.find(r => r.id === recipeId); const input = document.querySelector(`[data-tag-input="${recipeId}"]`); const newTag = normalizeTag(input.value); if(recipe && newTag){ setRecipeTags(recipeId, [...getRecipeTags(recipe), newTag]); refreshTagFilter(); renderRecipes(); } }
   if(removeButton){ const recipeId = removeButton.dataset.removeTag; const recipe = recipes.find(r => r.id === recipeId); if(recipe){ setRecipeTags(recipeId, getRecipeTags(recipe).filter(t => t !== removeButton.dataset.tag)); refreshTagFilter(); renderRecipes(); } }
   if(addIngredientButton){ const recipeId = addIngredientButton.dataset.addIngredient; const recipe = recipes.find(r => r.id === recipeId); const nameInput = document.querySelector(`[data-add-ingredient-name="${recipeId}"]`); const amountInput = document.querySelector(`[data-add-ingredient-amount="${recipeId}"]`); const ing = findIngredientByInput(nameInput.value); if(recipe && ing){ recipe.ingredients.push({ingredientId: ing.id, amount: Number(amountInput.value || 0)}); persistRecipe(recipe); renderRecipes(); } else alert('Ingredient not found. Try typing the ingredient exactly as it appears in the list.'); }
@@ -125,17 +150,7 @@ function setupEvents(){
   document.getElementById('builderIngredients').addEventListener('click', event => { const btn = event.target.closest('[data-builder-remove]'); if(!btn) return; builderIngredients.splice(Number(btn.dataset.builderRemove), 1); renderBuilder(); });
   document.getElementById('saveNewRecipe').addEventListener('click', () => { const name = document.getElementById('newRecipeName').value.trim(); if(!name){ alert('Add a recipe name first.'); return; } if(!builderIngredients.length){ alert('Add at least one ingredient.'); return; } const id = `custom-${slugify(name)}-${Date.now()}`; const tags = document.getElementById('newRecipeTags').value.split(',').map(normalizeTag).filter(Boolean); const method = document.getElementById('newRecipeMethod').value.split('\n').map(s => s.trim()).filter(Boolean); const recipe = {id, name, tags, ingredients: builderIngredients, method, seasoning:[], custom:true}; customRecipes.push(recipe); saveCustomRecipes(); builderIngredients = []; ['newRecipeName','newRecipeTags','newRecipeIngredientSearch','newRecipeMethod'].forEach(id => document.getElementById(id).value = ''); document.getElementById('newRecipeIngredientAmount').value = 100; refreshAllRecipes(); refreshTagFilter(); renderBuilder(); renderRecipes(); });
 }
-async function loadRemoteDailyLog(){
-  try{
-    const res = await fetch('daily-log.json', {cache:'no-store'});
-    if(!res.ok) return;
-    const remote = await res.json();
-    for(const [date, data] of Object.entries(remote || {})){
-      if(!dailyLog[date] || !dailyLog[date].entries?.length) dailyLog[date] = data;
-    }
-    saveDailyLog();
-  } catch {}
-}
+async function loadRemoteDailyLog(){ try{ const res = await fetch('daily-log.json', {cache:'no-store'}); if(!res.ok) return; const remote = await res.json(); for(const [date, data] of Object.entries(remote || {})){ if(!dailyLog[date] || !dailyLog[date].entries?.length) dailyLog[date] = data; } saveDailyLog(); } catch {} }
 async function init(){
   const [ingRes, recRes] = await Promise.all([fetch('ingredients.json'), fetch('recipes.json')]);
   ingredients = await ingRes.json(); baseRecipes = await recRes.json(); ingredientMap = new Map(ingredients.map(i => [i.id, i]));
