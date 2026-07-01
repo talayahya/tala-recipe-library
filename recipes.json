@@ -1,0 +1,108 @@
+[
+  {
+    "id":"breakfast-potato-egg-wrap",
+    "name":"Breakfast Potato & Egg Wrap",
+    "tags":["breakfast","wrap","potato","egg","high fibre","pre workout"],
+    "ingredients":[
+      {"ingredientId":"mission-carb-balance-wrap","amount":1},
+      {"ingredientId":"peeled-potato","amount":155},
+      {"ingredientId":"egg","amount":176},
+      {"ingredientId":"tesco-nacho-cheese-sauce","amount":25},
+      {"ingredientId":"heinz-zero-ketchup","amount":15}
+    ],
+    "seasoning":["1/4 tsp salt","1/4 tsp black pepper","1/2 tsp garlic powder","1/2 tsp smoked paprika","2–3 sprays Frylight"],
+    "method":[
+      "Grate the peeled potato using the large holes of a grater.",
+      "Squeeze out as much water as possible using kitchen paper or a clean towel.",
+      "Mix potato with salt, pepper, garlic powder, smoked paprika and Frylight.",
+      "Air fry at 200°C for 15–18 minutes, shaking halfway, until crispy.",
+      "Scramble eggs over low to medium-low heat for 2–3 minutes until just set.",
+      "Warm the wrap, spread nacho cheese sauce, add potato, eggs and ketchup.",
+      "Fold tightly and toast in a dry pan for about 2 minutes per side."
+    ]
+  },
+  {
+    "id":"protein-yogurt-bowl",
+    "name":"Protein Yogurt Bowl",
+    "tags":["breakfast","yogurt","protein","fruit","sweet"],
+    "ingredients":[
+      {"ingredientId":"fage-zero-yogurt","amount":171},
+      {"ingredientId":"usn-whey","amount":1},
+      {"ingredientId":"blueberries","amount":31},
+      {"ingredientId":"banana","amount":76},
+      {"ingredientId":"blueberry-rice-cake","amount":2}
+    ],
+    "method":["Mix yogurt and whey until smooth.","Add banana and blueberries.","Crush or serve with rice cakes for crunch."]
+  },
+  {
+    "id":"beef-burger-wrap",
+    "name":"Lean Beef Burger Wrap",
+    "tags":["beef","wrap","burger","high protein"],
+    "ingredients":[
+      {"ingredientId":"mission-carb-balance-wrap","amount":1},
+      {"ingredientId":"tesco-lean-steak-mince-5","amount":250},
+      {"ingredientId":"lettuce","amount":50},
+      {"ingredientId":"avocado","amount":63},
+      {"ingredientId":"tesco-burger-sauce","amount":30},
+      {"ingredientId":"hellmanns-lighter-than-light-mayo","amount":15}
+    ],
+    "seasoning":["Salt","Black pepper","Garlic powder","Onion powder","Smoked paprika","Optional Cajun seasoning"],
+    "method":["Cook mince in a non-stick pan over medium-high heat for 5–6 minutes.","Add seasoning once mostly browned, then cook another 2–3 minutes until no pink remains.","Warm the wrap, add lettuce, beef, avocado, burger sauce and mayo.","Fold tightly and toast in a dry pan for 1–2 minutes per side if desired."]
+  },
+  {
+    "id":"bean-wrap",
+    "name":"Crispy Bean Wrap",
+    "tags":["beans","wrap","high carb","high fibre","vegetarian"],
+    "ingredients":[
+      {"ingredientId":"old-el-paso-extra-thin-wrap","amount":1},
+      {"ingredientId":"mixed-beans-can","amount":176},
+      {"ingredientId":"tesco-nacho-cheese-sauce","amount":20},
+      {"ingredientId":"lettuce","amount":30}
+    ],
+    "method":["Drain most of the liquid from the beans but do not rinse.","Heat beans until hot.","Warm the tortilla for 10–15 seconds.","Add beans and nacho cheese sauce, fold tightly.","Crisp in a dry pan for 2–3 minutes per side or air fry at 190°C for 4–6 minutes.","Add lettuce after crisping if you want it fresh and crunchy."]
+  },
+  {
+    "id":"salmon-salad-meal",
+    "name":"Lemon Herb Salmon & Salad",
+    "tags":["salmon","salad","high protein","omega 3"],
+    "ingredients":[
+      {"ingredientId":"tesco-lemon-herb-salmon-pack","amount":1},
+      {"ingredientId":"tesco-salad-mix","amount":146}
+    ],
+    "method":["Cook salmon according to pack instructions or until internal temperature reaches 63°C.","Serve with salad mix.","Add potato, rice or sweet potato if you need more carbs."]
+  },
+  {
+    "id":"salmon-rice-bowl",
+    "name":"Salmon Rice Bowl",
+    "tags":["salmon","rice","bowl","high protein"],
+    "ingredients":[
+      {"ingredientId":"pink-salmon-can","amount":1},
+      {"ingredientId":"ben-basmati-microwave-rice","amount":114},
+      {"ingredientId":"avocado","amount":64},
+      {"ingredientId":"edamame","amount":50},
+      {"ingredientId":"fage-zero-yogurt","amount":60}
+    ],
+    "method":["Heat rice safely according to pack instructions.","Add salmon, avocado, edamame and yogurt.","Season with salt, pepper, soy sauce, ketchup or cheese sauce as preferred."]
+  },
+  {
+    "id":"low-cal-hot-chocolate",
+    "name":"Salted Caramel Cocoa Hot Chocolate",
+    "tags":["drink","hot chocolate","low calorie","dessert"],
+    "ingredients":[
+      {"ingredientId":"tesco-cocoa-powder","amount":9},
+      {"ingredientId":"marvel-skimmed-milk-powder","amount":10}
+    ],
+    "seasoning":["Salted caramel zero-calorie sweetener to taste","Tiny pinch of salt"],
+    "method":["Add cocoa powder, Marvel and a tiny pinch of salt to a mug.","Add 1–2 tbsp boiling water and stir into a smooth paste.","Add sweetener to taste.","Slowly add 250–300 ml hot water while stirring."]
+  },
+  {
+    "id":"nescafe-gold-marvel",
+    "name":"Nescafé Gold with Marvel & Sweetener",
+    "tags":["coffee","drink","low sugar"],
+    "ingredients":[
+      {"ingredientId":"marvel-skimmed-milk-powder","amount":15}
+    ],
+    "seasoning":["1 rounded tsp Nescafé Gold Blend","Zero-calorie sweetener to taste"],
+    "method":["Mix Marvel with a small splash of cold water to form a paste.","Add Nescafé Gold and sweetener.","Top with hot water while stirring."]
+  }
+]
