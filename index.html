@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260701c">
+  <link rel="stylesheet" href="styles.css?v=20260701d">
 </head>
 <body>
   <header>
@@ -13,6 +13,7 @@
 
   <nav class="tab-nav" aria-label="Main sections">
     <button class="tab-button active" type="button" data-tab="diaryPanel">Today</button>
+    <button class="tab-button" type="button" data-tab="historyPanel">History</button>
     <button class="tab-button" type="button" data-tab="recipesPanel">Recipes</button>
     <button class="tab-button" type="button" data-tab="ingredientsPanel">Ingredients</button>
     <button class="tab-button" type="button" data-tab="builderPanel">New recipe</button>
@@ -57,6 +58,22 @@
       <div id="dailyEntries" class="entry-list"></div>
     </section>
 
+    <section id="historyPanel" class="tab-panel history-panel">
+      <div class="section-heading">
+        <h2>History</h2>
+        <input id="historyDate" type="date">
+      </div>
+      <div class="history-controls">
+        <button id="historyPrev" type="button">‹</button>
+        <button id="historyToday" type="button">Today</button>
+        <button id="historyNext" type="button">›</button>
+      </div>
+      <div id="historyTotals" class="macro-line"></div>
+      <div id="historyWeeklyAverage" class="weekly-average"></div>
+      <div id="historyChart" class="bar-chart"></div>
+      <div id="historyEntries" class="entry-list"></div>
+    </section>
+
     <section id="recipesPanel" class="tab-panel">
       <div class="toolbar">
         <input id="search" type="search" placeholder="Search recipes...">
@@ -98,6 +115,6 @@
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=20260701c"></script>
+  <script src="app.js?v=20260701d"></script>
 </body>
 </html>
