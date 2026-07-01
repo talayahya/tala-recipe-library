@@ -9,7 +9,7 @@
 <body>
   <header>
     <h1>Recipe Library</h1>
-    <p>Search, scale, and calculate your regular meals.</p>
+    <p>Search, scale, calculate, and track your meals.</p>
   </header>
 
   <main>
@@ -20,7 +20,57 @@
       </select>
     </section>
 
+    <section class="daily-tracker">
+      <div class="section-heading">
+        <h2>Daily macro tracker</h2>
+        <input id="trackerDate" type="date">
+      </div>
+
+      <div class="target-grid">
+        <label>Calories target <input id="targetCalories" type="number" min="0" step="10"></label>
+        <label>Protein target <input id="targetProtein" type="number" min="0" step="1"></label>
+        <label>Carbs target <input id="targetCarbs" type="number" min="0" step="1"></label>
+        <label>Fat target <input id="targetFat" type="number" min="0" step="1"></label>
+        <label>Fibre target <input id="targetFibre" type="number" min="0" step="1"></label>
+      </div>
+
+      <div id="dailyTotals" class="macro-line"></div>
+      <div id="macroProgress" class="progress-list"></div>
+      <div id="weeklyAverage" class="weekly-average"></div>
+      <div id="calorieChart" class="bar-chart"></div>
+
+      <div class="manual-entry">
+        <h3>Add manual entry</h3>
+        <input id="manualName" type="text" placeholder="Name, e.g. coffee, snack, restaurant meal">
+        <div class="manual-grid">
+          <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
+          <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein g">
+          <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs g">
+          <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat g">
+          <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre g">
+        </div>
+        <button id="addManualEntry" type="button">Add to day</button>
+      </div>
+
+      <div id="dailyEntries" class="entry-list"></div>
+    </section>
+
     <section id="recipeGrid" class="grid"></section>
+
+    <section class="recipe-builder">
+      <h2>Add your own recipe</h2>
+      <input id="newRecipeName" type="text" placeholder="Recipe name">
+      <input id="newRecipeTags" type="text" placeholder="Tags separated by commas, e.g. breakfast, sweet, high carb">
+      <div class="builder-row">
+        <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient">
+        <input id="newRecipeIngredientAmount" type="number" min="0" step="1" value="100">
+        <button id="addBuilderIngredient" type="button">Add ingredient</button>
+      </div>
+      <div id="builderIngredients" class="entry-list"></div>
+      <div id="builderTotals" class="macro-line"></div>
+      <textarea id="newRecipeMethod" rows="4" placeholder="Method / instructions, one step per line"></textarea>
+      <button id="saveNewRecipe" type="button">Save recipe</button>
+    </section>
 
     <section class="ingredient-calculator">
       <h2>Ingredients calculator</h2>
@@ -30,13 +80,16 @@
         <select id="ingredientSelect"></select>
         <input id="ingredientAmount" type="number" value="100" min="0" step="1">
         <span id="ingredientUnit">g</span>
+        <button id="addIngredientToDay" type="button">Add to day</button>
       </div>
       <div id="ingredientResult" class="macro-line"></div>
     </section>
+
+    <datalist id="ingredientDatalist"></datalist>
   </main>
 
   <footer>
-    <p>Nutrition values are based on your saved labels and regular foods. Update JSON files when a label changes.</p>
+    <p>Local edits and daily logs save in this browser. Ask ChatGPT to update the repo for permanent recipe changes.</p>
   </footer>
 
   <script src="app.js"></script>
