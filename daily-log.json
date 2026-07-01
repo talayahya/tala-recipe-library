@@ -22,6 +22,26 @@
           { "name": "USN Whey Protein Powder", "amount": 1, "unit": "scoop" }
         ],
         "createdAt": "2026-07-01T12:00:00+01:00"
+      },
+      {
+        "id": "2026-07-01-nescafe-with-milk",
+        "label": "Nescafé with milk",
+        "macros": {
+          "calories": 56,
+          "protein": 5.2,
+          "carbs": 7.1,
+          "fat": 0.1,
+          "fibre": 0,
+          "addedSugar": 0,
+          "naturalSugar": 7.1,
+          "totalSugar": 7.1
+        },
+        "details": [
+          { "name": "Marvel Dried Skimmed Milk Powder", "amount": 15, "unit": "g" },
+          { "name": "Nescafé", "amount": 1, "unit": "tsp" },
+          { "name": "Zero-calorie sweetener", "amount": 1, "unit": "serving" }
+        ],
+        "createdAt": "2026-07-01T12:10:00+01:00"
       }
     ]
   }
