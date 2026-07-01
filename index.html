@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tala Recipe Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Tala Recipe Library</h1>
+    <p>Search, scale, and calculate your regular meals.</p>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Search recipes: salmon, wrap, beans, hot chocolate...">
+      <select id="tagFilter">
+        <option value="">All tags</option>
+      </select>
+    </section>
+
+    <section class="summary" id="daySummary">
+      <h2>Recipe totals update live</h2>
+      <p>Change ingredient grams or item counts inside any recipe card.</p>
+    </section>
+
+    <section id="recipeGrid" class="grid"></section>
+
+    <section class="ingredient-calculator">
+      <h2>Ingredients calculator</h2>
+      <p>Quickly check macros for one ingredient amount.</p>
+      <div class="calc-row">
+        <select id="ingredientSelect"></select>
+        <input id="ingredientAmount" type="number" value="100" min="0" step="1">
+        <span id="ingredientUnit">g</span>
+      </div>
+      <div id="ingredientResult" class="macro-line"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nutrition values are based on your saved labels and regular foods. Update JSON files when a label changes.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
