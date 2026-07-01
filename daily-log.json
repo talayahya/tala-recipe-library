@@ -1,2 +1,28 @@
 {
+  "2026-07-01": {
+    "entries": [
+      {
+        "id": "2026-07-01-breakfast-yogurt-bowl",
+        "label": "Breakfast yogurt bowl",
+        "macros": {
+          "calories": 402.3,
+          "protein": 44.1,
+          "carbs": 53.4,
+          "fat": 2.7,
+          "fibre": 6.5,
+          "addedSugar": 2,
+          "naturalSugar": 29.4,
+          "totalSugar": 31.4
+        },
+        "details": [
+          { "name": "FAGE 0% Greek Yogurt", "amount": 150, "unit": "g" },
+          { "name": "Blueberries", "amount": 42, "unit": "g" },
+          { "name": "Banana", "amount": 106, "unit": "g" },
+          { "name": "Blueberry Rice Cake", "amount": 2, "unit": "item" },
+          { "name": "USN Whey Protein Powder", "amount": 1, "unit": "scoop" }
+        ],
+        "createdAt": "2026-07-01T12:00:00+01:00"
+      }
+    ]
+  }
 }
