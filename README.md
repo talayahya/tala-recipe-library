@@ -1,6 +1,6 @@
-# Tala Recipe Library
+# Recipe Library
 
-A searchable, scalable recipe and ingredient library for your regular meals.
+A searchable, scalable recipe and ingredient library for regular meals.
 
 ## How it works
 
