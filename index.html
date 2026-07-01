@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recipe Library</title>
+  <title>Tala Recipe Library</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Recipe Library</h1>
-    <p>Search, scale, calculate, and track your meals.</p>
+    <h1>Tala Food Diary</h1>
+    <p>Recipes, scalable macros, ingredients, and daily tracking.</p>
   </header>
 
-  <main>
-    <section class="toolbar">
-      <input id="search" type="search" placeholder="Search recipes: salmon, wrap, beans, hot chocolate...">
-      <select id="tagFilter">
-        <option value="">All tags</option>
-      </select>
-    </section>
+  <nav class="tab-nav" aria-label="Main sections">
+    <button class="tab-button active" type="button" data-tab="diaryPanel">Today</button>
+    <button class="tab-button" type="button" data-tab="recipesPanel">Recipes</button>
+    <button class="tab-button" type="button" data-tab="ingredientsPanel">Ingredients</button>
+    <button class="tab-button" type="button" data-tab="builderPanel">New recipe</button>
+    <button class="tab-button" type="button" data-tab="chatPanel">ChatGPT workflow</button>
+  </nav>
 
-    <section class="daily-tracker">
+  <main>
+    <section id="diaryPanel" class="tab-panel active daily-tracker">
       <div class="section-heading">
         <h2>Daily macro tracker</h2>
         <input id="trackerDate" type="date">
@@ -35,6 +36,7 @@
       </div>
 
       <div id="dailyTotals" class="macro-line"></div>
+      <div id="sugarTotals" class="sugar-summary"></div>
       <div id="macroProgress" class="progress-list"></div>
       <div id="weeklyAverage" class="weekly-average"></div>
       <div id="calorieChart" class="bar-chart"></div>
@@ -48,6 +50,8 @@
           <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs g">
           <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat g">
           <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre g">
+          <input id="manualAddedSugar" type="number" min="0" step="0.1" placeholder="added sugar g">
+          <input id="manualNaturalSugar" type="number" min="0" step="0.1" placeholder="natural sugar g">
         </div>
         <button id="addManualEntry" type="button">Add to day</button>
       </div>
@@ -55,9 +59,30 @@
       <div id="dailyEntries" class="entry-list"></div>
     </section>
 
-    <section id="recipeGrid" class="grid"></section>
+    <section id="recipesPanel" class="tab-panel">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search recipes: salmon, wrap, beans, hot chocolate...">
+        <select id="tagFilter">
+          <option value="">All tags</option>
+        </select>
+      </div>
+      <section id="recipeGrid" class="grid"></section>
+    </section>
 
-    <section class="recipe-builder">
+    <section id="ingredientsPanel" class="tab-panel ingredient-calculator">
+      <h2>Ingredients calculator</h2>
+      <p>Search any ingredient and adjust the amount. You can add the result straight to today's diary.</p>
+      <input id="ingredientSearch" type="search" placeholder="Search ingredients: cocoa, wrap, beans, yogurt...">
+      <div class="calc-row">
+        <select id="ingredientSelect"></select>
+        <input id="ingredientAmount" type="number" value="100" min="0" step="1">
+        <span id="ingredientUnit">g</span>
+        <button id="addIngredientToDay" type="button">Add to day</button>
+      </div>
+      <div id="ingredientResult" class="macro-line"></div>
+    </section>
+
+    <section id="builderPanel" class="tab-panel recipe-builder">
       <h2>Add your own recipe</h2>
       <input id="newRecipeName" type="text" placeholder="Recipe name">
       <input id="newRecipeTags" type="text" placeholder="Tags separated by commas, e.g. breakfast, sweet, high carb">
@@ -72,24 +97,28 @@
       <button id="saveNewRecipe" type="button">Save recipe</button>
     </section>
 
-    <section class="ingredient-calculator">
-      <h2>Ingredients calculator</h2>
-      <p>Search any ingredient and adjust the amount.</p>
-      <input id="ingredientSearch" type="search" placeholder="Search ingredients: cocoa, wrap, beans, yogurt...">
-      <div class="calc-row">
-        <select id="ingredientSelect"></select>
-        <input id="ingredientAmount" type="number" value="100" min="0" step="1">
-        <span id="ingredientUnit">g</span>
-        <button id="addIngredientToDay" type="button">Add to day</button>
+    <section id="chatPanel" class="tab-panel chat-workflow">
+      <h2>ChatGPT workflow</h2>
+      <div class="workflow-card">
+        <h3>Fastest way to log food</h3>
+        <p>Speak into ChatGPT like normal. At the end of the day say: <strong>“Add today’s macros to my food diary site.”</strong></p>
+        <p>I can then update the repository’s <code>daily-log.json</code>. When GitHub Pages refreshes, your site will show that day in the diary.</p>
       </div>
-      <div id="ingredientResult" class="macro-line"></div>
+      <div class="workflow-card">
+        <h3>Fastest way to save recipes</h3>
+        <p>Say: <strong>“Add this recipe to my recipe site.”</strong> I’ll update <code>recipes.json</code> and <code>ingredients.json</code> so it becomes searchable and scalable.</p>
+      </div>
+      <div class="workflow-card warning">
+        <h3>Important</h3>
+        <p>The website can save edits in your browser. ChatGPT can update the GitHub files, but it cannot directly write into your phone browser’s local storage. For permanent updates across devices, use the ChatGPT → GitHub workflow.</p>
+      </div>
     </section>
 
     <datalist id="ingredientDatalist"></datalist>
   </main>
 
   <footer>
-    <p>Local edits and daily logs save in this browser. Ask ChatGPT to update the repo for permanent recipe changes.</p>
+    <p>Local edits save in this browser. Permanent recipe and diary updates can be added through ChatGPT + GitHub.</p>
   </footer>
 
   <script src="app.js"></script>
