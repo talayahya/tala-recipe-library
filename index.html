@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tala Recipe Library</title>
+  <title>Tala Food Diary</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>Tala Food Diary</h1>
-    <p>Recipes, scalable macros, ingredients, and daily tracking.</p>
   </header>
 
   <nav class="tab-nav" aria-label="Main sections">
@@ -17,22 +16,21 @@
     <button class="tab-button" type="button" data-tab="recipesPanel">Recipes</button>
     <button class="tab-button" type="button" data-tab="ingredientsPanel">Ingredients</button>
     <button class="tab-button" type="button" data-tab="builderPanel">New recipe</button>
-    <button class="tab-button" type="button" data-tab="chatPanel">ChatGPT workflow</button>
   </nav>
 
   <main>
     <section id="diaryPanel" class="tab-panel active daily-tracker">
       <div class="section-heading">
-        <h2>Daily macro tracker</h2>
+        <h2>Daily tracker</h2>
         <input id="trackerDate" type="date">
       </div>
 
       <div class="target-grid">
-        <label>Calories target <input id="targetCalories" type="number" min="0" step="10"></label>
-        <label>Protein target <input id="targetProtein" type="number" min="0" step="1"></label>
-        <label>Carbs target <input id="targetCarbs" type="number" min="0" step="1"></label>
-        <label>Fat target <input id="targetFat" type="number" min="0" step="1"></label>
-        <label>Fibre target <input id="targetFibre" type="number" min="0" step="1"></label>
+        <label>Calories <input id="targetCalories" type="number" min="0" step="10"></label>
+        <label>Protein <input id="targetProtein" type="number" min="0" step="1"></label>
+        <label>Carbs <input id="targetCarbs" type="number" min="0" step="1"></label>
+        <label>Fat <input id="targetFat" type="number" min="0" step="1"></label>
+        <label>Fibre <input id="targetFibre" type="number" min="0" step="1"></label>
       </div>
 
       <div id="dailyTotals" class="macro-line"></div>
@@ -42,18 +40,18 @@
       <div id="calorieChart" class="bar-chart"></div>
 
       <div class="manual-entry">
-        <h3>Add manual entry</h3>
-        <input id="manualName" type="text" placeholder="Name, e.g. coffee, snack, restaurant meal">
+        <h3>Add entry</h3>
+        <input id="manualName" type="text" placeholder="Name">
         <div class="manual-grid">
           <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
-          <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein g">
-          <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs g">
-          <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat g">
-          <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre g">
-          <input id="manualAddedSugar" type="number" min="0" step="0.1" placeholder="added sugar g">
-          <input id="manualNaturalSugar" type="number" min="0" step="0.1" placeholder="natural sugar g">
+          <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein">
+          <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs">
+          <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat">
+          <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre">
+          <input id="manualAddedSugar" type="number" min="0" step="0.1" placeholder="added sugar">
+          <input id="manualNaturalSugar" type="number" min="0" step="0.1" placeholder="natural sugar">
         </div>
-        <button id="addManualEntry" type="button">Add to day</button>
+        <button id="addManualEntry" type="button">Add</button>
       </div>
 
       <div id="dailyEntries" class="entry-list"></div>
@@ -61,7 +59,7 @@
 
     <section id="recipesPanel" class="tab-panel">
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search recipes: salmon, wrap, beans, hot chocolate...">
+        <input id="search" type="search" placeholder="Search recipes...">
         <select id="tagFilter">
           <option value="">All tags</option>
         </select>
@@ -70,56 +68,34 @@
     </section>
 
     <section id="ingredientsPanel" class="tab-panel ingredient-calculator">
-      <h2>Ingredients calculator</h2>
-      <p>Search any ingredient and adjust the amount. You can add the result straight to today's diary.</p>
-      <input id="ingredientSearch" type="search" placeholder="Search ingredients: cocoa, wrap, beans, yogurt...">
+      <h2>Ingredients</h2>
+      <input id="ingredientSearch" type="search" placeholder="Search ingredients...">
       <div class="calc-row">
         <select id="ingredientSelect"></select>
         <input id="ingredientAmount" type="number" value="100" min="0" step="1">
         <span id="ingredientUnit">g</span>
-        <button id="addIngredientToDay" type="button">Add to day</button>
+        <button id="addIngredientToDay" type="button">Add</button>
       </div>
       <div id="ingredientResult" class="macro-line"></div>
     </section>
 
     <section id="builderPanel" class="tab-panel recipe-builder">
-      <h2>Add your own recipe</h2>
+      <h2>New recipe</h2>
       <input id="newRecipeName" type="text" placeholder="Recipe name">
-      <input id="newRecipeTags" type="text" placeholder="Tags separated by commas, e.g. breakfast, sweet, high carb">
+      <input id="newRecipeTags" type="text" placeholder="Tags, separated by commas">
       <div class="builder-row">
         <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient">
         <input id="newRecipeIngredientAmount" type="number" min="0" step="1" value="100">
-        <button id="addBuilderIngredient" type="button">Add ingredient</button>
+        <button id="addBuilderIngredient" type="button">Add</button>
       </div>
       <div id="builderIngredients" class="entry-list"></div>
       <div id="builderTotals" class="macro-line"></div>
-      <textarea id="newRecipeMethod" rows="4" placeholder="Method / instructions, one step per line"></textarea>
-      <button id="saveNewRecipe" type="button">Save recipe</button>
-    </section>
-
-    <section id="chatPanel" class="tab-panel chat-workflow">
-      <h2>ChatGPT workflow</h2>
-      <div class="workflow-card">
-        <h3>Fastest way to log food</h3>
-        <p>Speak into ChatGPT like normal. At the end of the day say: <strong>“Add today’s macros to my food diary site.”</strong></p>
-        <p>I can then update the repository’s <code>daily-log.json</code>. When GitHub Pages refreshes, your site will show that day in the diary.</p>
-      </div>
-      <div class="workflow-card">
-        <h3>Fastest way to save recipes</h3>
-        <p>Say: <strong>“Add this recipe to my recipe site.”</strong> I’ll update <code>recipes.json</code> and <code>ingredients.json</code> so it becomes searchable and scalable.</p>
-      </div>
-      <div class="workflow-card warning">
-        <h3>Important</h3>
-        <p>The website can save edits in your browser. ChatGPT can update the GitHub files, but it cannot directly write into your phone browser’s local storage. For permanent updates across devices, use the ChatGPT → GitHub workflow.</p>
-      </div>
+      <textarea id="newRecipeMethod" rows="4" placeholder="Method, one step per line"></textarea>
+      <button id="saveNewRecipe" type="button">Save</button>
     </section>
 
     <datalist id="ingredientDatalist"></datalist>
   </main>
-
-  <footer>
-    <p>Local edits save in this browser. Permanent recipe and diary updates can be added through ChatGPT + GitHub.</p>
-  </footer>
 
   <script src="app.js"></script>
 </body>
