@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tala Recipe Library</title>
+  <title>Recipe Library</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Tala Recipe Library</h1>
+    <h1>Recipe Library</h1>
     <p>Search, scale, and calculate your regular meals.</p>
   </header>
 
@@ -20,16 +20,12 @@
       </select>
     </section>
 
-    <section class="summary" id="daySummary">
-      <h2>Recipe totals update live</h2>
-      <p>Change ingredient grams or item counts inside any recipe card.</p>
-    </section>
-
     <section id="recipeGrid" class="grid"></section>
 
     <section class="ingredient-calculator">
       <h2>Ingredients calculator</h2>
-      <p>Quickly check macros for one ingredient amount.</p>
+      <p>Search any ingredient and adjust the amount.</p>
+      <input id="ingredientSearch" type="search" placeholder="Search ingredients: cocoa, wrap, beans, yogurt...">
       <div class="calc-row">
         <select id="ingredientSelect"></select>
         <input id="ingredientAmount" type="number" value="100" min="0" step="1">
