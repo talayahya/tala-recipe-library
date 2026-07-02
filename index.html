@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260702e">
+  <link rel="stylesheet" href="styles.css?v=20260702f">
 </head>
 <body>
   <header>
@@ -42,8 +42,6 @@
           </div>
         </div>
         <div id="macroBars" class="macro-bars"></div>
-        <div id="sugarTotals" class="sugar-line"></div>
-        <div id="weeklyAverage" class="week-line"></div>
       </section>
 
       <div id="goalsPanel" class="card goals-panel hidden">
@@ -62,6 +60,7 @@
           <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
           <button id="addManualEntry" type="button">Add</button>
         </div>
+        <div id="recentFoods" class="recents hidden"></div>
         <details class="more-macros">
           <summary>More macros</summary>
           <div class="manual-grid">
@@ -136,6 +135,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js?v=20260702e"></script>
+  <script src="app.js?v=20260702f"></script>
 </body>
 </html>
