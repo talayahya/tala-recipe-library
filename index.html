@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260702c">
+  <link rel="stylesheet" href="styles.css?v=20260702d">
 </head>
 <body>
   <header>
@@ -15,45 +15,65 @@
     <button class="tab-button active" type="button" data-tab="diaryPanel">Today</button>
     <button class="tab-button" type="button" data-tab="historyPanel">History</button>
     <button class="tab-button" type="button" data-tab="recipesPanel">Recipes</button>
-    <button class="tab-button" type="button" data-tab="ingredientsPanel">Ingredients</button>
-    <button class="tab-button" type="button" data-tab="builderPanel">New recipe</button>
+    <button class="tab-button" type="button" data-tab="ingredientsPanel">Foods</button>
+    <button class="tab-button" type="button" data-tab="builderPanel">New</button>
   </nav>
 
   <main>
-    <section id="diaryPanel" class="tab-panel active daily-tracker">
-      <div class="section-heading">
-        <h2>Daily tracker</h2>
+    <section id="diaryPanel" class="tab-panel active">
+      <div class="day-bar">
+        <button id="dayPrev" class="icon-btn" type="button" aria-label="Previous day">‹</button>
         <input id="trackerDate" type="date">
+        <button id="dayNext" class="icon-btn" type="button" aria-label="Next day">›</button>
       </div>
 
-      <div class="target-grid">
-        <label>Calories <input id="targetCalories" type="number" min="0" step="10"></label>
-        <label>Protein <input id="targetProtein" type="number" min="0" step="1"></label>
-        <label>Carbs <input id="targetCarbs" type="number" min="0" step="1"></label>
-        <label>Fat <input id="targetFat" type="number" min="0" step="1"></label>
-        <label>Fibre <input id="targetFibre" type="number" min="0" step="1"></label>
-      </div>
-
-      <div id="dailyTotals" class="macro-line"></div>
-      <div id="sugarTotals" class="sugar-summary"></div>
-      <div id="macroProgress" class="progress-list"></div>
-      <div id="weeklyAverage" class="weekly-average"></div>
-      <div id="calorieChart" class="bar-chart"></div>
-
-      <div class="manual-entry">
-        <h3>Add entry</h3>
-        <input id="manualName" type="text" placeholder="Name">
-        <div class="manual-grid">
-          <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
-          <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein">
-          <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs">
-          <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat">
-          <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre">
-          <input id="manualAddedSugar" type="number" min="0" step="0.1" placeholder="added sugar">
-          <input id="manualNaturalSugar" type="number" min="0" step="0.1" placeholder="natural sugar">
+      <section class="card summary-card">
+        <div class="cal-summary">
+          <div id="calRing" class="cal-ring" style="--pct:0">
+            <div class="cal-ring-inner">
+              <strong id="calRemaining">0</strong>
+              <span id="calRemainingLabel">left</span>
+            </div>
+          </div>
+          <div class="cal-figures">
+            <div class="cal-fig"><span>Eaten</span><b id="calConsumed">0</b></div>
+            <div class="cal-fig"><span>Goal</span><b id="calTarget">0</b></div>
+            <button id="editGoals" class="link-btn" type="button">Edit goals</button>
+          </div>
         </div>
-        <button id="addManualEntry" type="button">Add</button>
+        <div id="macroBars" class="macro-bars"></div>
+        <div id="sugarTotals" class="sugar-line"></div>
+        <div id="weeklyAverage" class="week-line"></div>
+      </section>
+
+      <div id="goalsPanel" class="card goals-panel hidden">
+        <div class="target-grid">
+          <label>Calories <input id="targetCalories" type="number" min="0" step="10"></label>
+          <label>Protein <input id="targetProtein" type="number" min="0" step="1"></label>
+          <label>Carbs <input id="targetCarbs" type="number" min="0" step="1"></label>
+          <label>Fat <input id="targetFat" type="number" min="0" step="1"></label>
+          <label>Fibre <input id="targetFibre" type="number" min="0" step="1"></label>
+        </div>
       </div>
+
+      <section class="card add-card">
+        <div class="add-row">
+          <input id="manualName" type="text" placeholder="Add food…">
+          <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
+          <button id="addManualEntry" type="button">Add</button>
+        </div>
+        <details class="more-macros">
+          <summary>More macros</summary>
+          <div class="manual-grid">
+            <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein">
+            <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs">
+            <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat">
+            <input id="manualFibre" type="number" min="0" step="0.1" placeholder="fibre">
+            <input id="manualAddedSugar" type="number" min="0" step="0.1" placeholder="added sugar">
+            <input id="manualNaturalSugar" type="number" min="0" step="0.1" placeholder="natural sugar">
+          </div>
+        </details>
+      </section>
 
       <div id="dailyEntries" class="entry-list"></div>
     </section>
@@ -116,6 +136,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js?v=20260702c"></script>
+  <script src="app.js?v=20260702d"></script>
 </body>
 </html>
