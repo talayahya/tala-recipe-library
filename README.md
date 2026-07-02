@@ -49,3 +49,11 @@ no Site URL / redirect allow-list configuration is required.
 
 Local entries made while logged out are migrated to Supabase automatically after
 login, de-duplicated by id and by content signature so nothing doubles up.
+
+### Duplicate / reappearing entries
+
+Entries are stored only in Supabase (when logged in) and `localStorage` — there
+is no static seed file re-imported on load, so a deleted entry stays deleted.
+If you still see old duplicate rows from before this fix, run
+[`cleanup-duplicates.sql`](cleanup-duplicates.sql) once in the Supabase SQL
+editor; it keeps one row per identical entry and removes the rest.
