@@ -9,25 +9,38 @@
     return typeof supabaseClient !== 'undefined' && supabaseClient &&
       typeof supabaseUser !== 'undefined' && supabaseUser &&
       typeof ingredients !== 'undefined' && Array.isArray(ingredients) && ingredients.length &&
-      typeof recipes !== 'undefined' && Array.isArray(recipes);
+      typeof recipes !== 'undefined' && Array.isArray(recipes) &&
+      typeof dailyLog !== 'undefined' && dailyLog;
+  }
+
+  function currentTargets() {
+    return typeof macroTargets !== 'undefined' ? macroTargets : null;
+  }
+
+  function currentDailyLog() {
+    return typeof dailyLog !== 'undefined' && dailyLog ? dailyLog : {};
   }
 
   function buildPayload() {
-    const targets = typeof macroTargets !== 'undefined' ? macroTargets : null;
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       source: 'Food Log',
       publicUrl: PUBLIC_URL,
       updatedAt: new Date().toISOString(),
-      macroTargets: targets,
+      macroTargets: currentTargets(),
       ingredients: ingredients,
-      recipes: recipes
+      recipes: recipes,
+      dailyLog: currentDailyLog()
     };
   }
 
   function buildSignature() {
-    const targets = typeof macroTargets !== 'undefined' ? macroTargets : null;
-    return JSON.stringify({ ingredients, recipes, macroTargets: targets });
+    return JSON.stringify({
+      ingredients,
+      recipes,
+      macroTargets: currentTargets(),
+      dailyLog: currentDailyLog()
+    });
   }
 
   async function publish(force = false) {
