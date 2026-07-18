@@ -2,6 +2,7 @@
   const BUCKET = 'food-log-public';
   const FILE_PATH = 'canonical-food-database.json';
   const PUBLIC_URL = 'https://dnpfritorhkyqfxqicnd.supabase.co/storage/v1/object/public/food-log-public/canonical-food-database.json';
+  const LOG_QUEUE_URL = 'https://talayahya.github.io/tala-recipe-library/log-queue.json';
   let lastSignature = '';
   let publishing = false;
 
@@ -23,9 +24,10 @@
 
   function buildPayload() {
     return {
-      schemaVersion: 2,
+      schemaVersion: 3,
       source: 'Food Log',
       publicUrl: PUBLIC_URL,
+      logQueueUrl: LOG_QUEUE_URL,
       updatedAt: new Date().toISOString(),
       macroTargets: currentTargets(),
       ingredients: ingredients,
@@ -62,7 +64,8 @@
       if (error) throw error;
       lastSignature = signature;
       window.CANONICAL_FOOD_DATABASE_URL = PUBLIC_URL;
-      document.dispatchEvent(new CustomEvent('canonical-food-database-published', { detail: { url: PUBLIC_URL } }));
+      window.FOOD_LOG_QUEUE_URL = LOG_QUEUE_URL;
+      document.dispatchEvent(new CustomEvent('canonical-food-database-published', { detail: { url: PUBLIC_URL, logQueueUrl: LOG_QUEUE_URL } }));
     } catch (error) {
       console.warn('Canonical food database publish failed:', error);
       document.dispatchEvent(new CustomEvent('canonical-food-database-error', { detail: { message: error?.message || String(error) } }));
@@ -73,6 +76,7 @@
 
   window.publishCanonicalFoodDatabase = () => publish(true);
   window.CANONICAL_FOOD_DATABASE_URL = PUBLIC_URL;
+  window.FOOD_LOG_QUEUE_URL = LOG_QUEUE_URL;
 
   function waitForApp() {
     if (!ready()) {
