@@ -1,9 +1,31 @@
 (() => {
+  function ensurePickerStyles() {
+    if (document.getElementById('dailySavedFoodPickerStyles')) return;
+    const style = document.createElement('style');
+    style.id = 'dailySavedFoodPickerStyles';
+    style.textContent = `
+      .daily-saved-food-picker{width:100%;max-width:100%;min-width:0;overflow:hidden;margin-bottom:10px}
+      .daily-saved-food-picker .add-row{display:grid;grid-template-columns:minmax(0,1fr) 76px 28px auto;gap:6px;align-items:center;width:100%;min-width:0}
+      .daily-saved-food-picker select,.daily-saved-food-picker input{width:100%;max-width:100%;min-width:0}
+      .daily-saved-food-picker select{overflow:hidden;text-overflow:ellipsis}
+      .daily-saved-food-picker #dailySavedIngredientUnit{min-width:0;white-space:nowrap;text-align:center;font-size:12px;color:var(--muted)}
+      .daily-saved-food-picker button{padding-left:12px;padding-right:12px;white-space:nowrap}
+      .daily-saved-food-picker small{display:block;margin-top:6px}
+      @media(max-width:380px){
+        .daily-saved-food-picker .add-row{grid-template-columns:minmax(0,1fr) 66px 24px auto;gap:5px}
+        .daily-saved-food-picker button{padding-left:10px;padding-right:10px}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function waitForFoodLog() {
     if (typeof ingredients === 'undefined' || !Array.isArray(ingredients) || !ingredients.length || typeof addEntryToDay !== 'function') {
       setTimeout(waitForFoodLog, 100);
       return;
     }
+
+    ensurePickerStyles();
 
     const addCard = document.querySelector('#diaryPanel .add-card');
     if (!addCard || document.getElementById('dailySavedIngredientSelect')) return;
@@ -57,5 +79,6 @@
     refreshUnit();
   }
 
+  ensurePickerStyles();
   waitForFoodLog();
 })();
