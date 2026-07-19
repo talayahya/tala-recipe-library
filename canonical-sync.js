@@ -2,7 +2,7 @@
   const BUCKET = 'food-log-public';
   const FILE_PATH = 'canonical-food-database.json';
   const PUBLIC_URL = 'https://dnpfritorhkyqfxqicnd.supabase.co/storage/v1/object/public/food-log-public/canonical-food-database.json';
-  const LOG_QUEUE_URL = 'https://talayahya.github.io/tala-recipe-library/log-queue.json';
+  const LOG_QUEUE_URL = 'https://raw.githubusercontent.com/talayahya/tala-recipe-library/main/log-queue.json';
   let lastSignature = '';
   let publishing = false;
 
