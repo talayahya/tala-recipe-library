@@ -6,8 +6,7 @@
     style.textContent = `
       .daily-saved-food-picker{width:100%;max-width:100%;min-width:0;overflow:hidden;margin-bottom:10px}
       .daily-saved-food-picker .add-row{display:grid;grid-template-columns:minmax(0,1fr) 76px 28px auto;gap:6px;align-items:center;width:100%;min-width:0}
-      .daily-saved-food-picker select,.daily-saved-food-picker input{width:100%;max-width:100%;min-width:0}
-      .daily-saved-food-picker select{overflow:hidden;text-overflow:ellipsis}
+      .daily-saved-food-picker input{width:100%;max-width:100%;min-width:0}
       .daily-saved-food-picker #dailySavedIngredientUnit{min-width:0;white-space:nowrap;text-align:center;font-size:12px;color:var(--muted)}
       .daily-saved-food-picker button{padding-left:12px;padding-right:12px;white-space:nowrap}
       .daily-saved-food-picker small{display:block;margin-top:6px}
@@ -28,13 +27,13 @@
     ensurePickerStyles();
 
     const addCard = document.querySelector('#diaryPanel .add-card');
-    if (!addCard || document.getElementById('dailySavedIngredientSelect')) return;
+    if (!addCard || document.getElementById('dailySavedIngredientSearch')) return;
 
     const picker = document.createElement('div');
     picker.className = 'daily-saved-food-picker';
     picker.innerHTML = `
       <div class="add-row">
-        <select id="dailySavedIngredientSelect" aria-label="Saved ingredient"></select>
+        <input id="dailySavedIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search saved foods" autocomplete="off" aria-label="Saved ingredient">
         <input id="dailySavedIngredientAmount" type="number" min="0" step="1" value="100" aria-label="Amount">
         <span id="dailySavedIngredientUnit">g</span>
         <button id="addSavedIngredientToDay" type="button">Add</button>
@@ -44,16 +43,19 @@
 
     addCard.prepend(picker);
 
-    const select = document.getElementById('dailySavedIngredientSelect');
+    const search = document.getElementById('dailySavedIngredientSearch');
     const amount = document.getElementById('dailySavedIngredientAmount');
     const unit = document.getElementById('dailySavedIngredientUnit');
     const addButton = document.getElementById('addSavedIngredientToDay');
 
     const sorted = ingredients.slice().sort((a, b) => a.name.localeCompare(b.name));
-    select.innerHTML = sorted.map(i => `<option value="${esc(i.id)}">${esc(i.name)}</option>`).join('');
 
     function selectedIngredient() {
-      return ingredientMap.get(select.value) || sorted.find(i => i.id === select.value);
+      const q = String(search.value || '').toLowerCase().trim();
+      if (!q) return null;
+      return sorted.find(i => i.name.toLowerCase() === q || i.id.toLowerCase() === q)
+        || sorted.find(i => i.name.toLowerCase().includes(q) || i.id.toLowerCase().includes(q))
+        || null;
     }
 
     function refreshUnit() {
@@ -62,11 +64,14 @@
       if (ing && ['item', 'scoop', 'can', 'pack'].includes(ing.unit) && Number(amount.value) === 100) amount.value = 1;
     }
 
-    select.addEventListener('change', refreshUnit);
+    search.addEventListener('input', refreshUnit);
     addButton.addEventListener('click', () => {
       const ing = selectedIngredient();
       const qty = Number(amount.value || 0);
-      if (!ing || qty <= 0) return;
+      if (!ing || qty <= 0) {
+        showToast('Search for a saved food first');
+        return;
+      }
       const unitLabel = ingredientUnitLabel(ing);
       addEntryToDay(
         `${ing.name} (${fmt(qty)} ${unitLabel})`,

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260716a">
+  <link rel="stylesheet" href="styles.css?v=20260719b">
 </head>
 <body>
   <header>
@@ -16,7 +16,6 @@
     <button class="tab-button" type="button" data-tab="historyPanel">History</button>
     <button class="tab-button" type="button" data-tab="recipesPanel">Recipes</button>
     <button class="tab-button" type="button" data-tab="ingredientsPanel">Foods</button>
-    <button class="tab-button" type="button" data-tab="builderPanel">New</button>
   </nav>
 
   <main>
@@ -94,12 +93,30 @@
     </section>
 
     <section id="recipesPanel" class="tab-panel">
-      <div class="toolbar">
+      <div class="recipes-topline">
+        <h2>Recipes</h2>
+        <button id="toggleRecipeBuilder" class="icon-btn add-recipe-button" type="button" aria-label="Add recipe" aria-controls="builderPanel" aria-expanded="false">+</button>
+      </div>
+      <div class="toolbar recipe-toolbar">
         <input id="search" type="search" placeholder="Search recipes...">
         <select id="tagFilter">
           <option value="">All tags</option>
         </select>
       </div>
+      <section id="builderPanel" class="recipe-builder recipe-builder-inline hidden">
+        <h2>New recipe</h2>
+        <input id="newRecipeName" type="text" placeholder="Recipe name">
+        <input id="newRecipeTags" type="text" placeholder="Tags, separated by commas">
+        <div class="builder-row">
+          <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient">
+          <input id="newRecipeIngredientAmount" type="number" min="0" step="1" value="100">
+          <button id="addBuilderIngredient" type="button">Add</button>
+        </div>
+        <div id="builderIngredients" class="entry-list"></div>
+        <div id="builderTotals" class="macro-line"></div>
+        <textarea id="newRecipeMethod" rows="4" placeholder="Method, one step per line"></textarea>
+        <button id="saveNewRecipe" type="button">Save</button>
+      </section>
       <section id="recipeGrid" class="grid"></section>
     </section>
 
@@ -115,29 +132,14 @@
       <div id="ingredientResult" class="macro-line"></div>
     </section>
 
-    <section id="builderPanel" class="tab-panel recipe-builder">
-      <h2>New recipe</h2>
-      <input id="newRecipeName" type="text" placeholder="Recipe name">
-      <input id="newRecipeTags" type="text" placeholder="Tags, separated by commas">
-      <div class="builder-row">
-        <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient">
-        <input id="newRecipeIngredientAmount" type="number" min="0" step="1" value="100">
-        <button id="addBuilderIngredient" type="button">Add</button>
-      </div>
-      <div id="builderIngredients" class="entry-list"></div>
-      <div id="builderTotals" class="macro-line"></div>
-      <textarea id="newRecipeMethod" rows="4" placeholder="Method, one step per line"></textarea>
-      <button id="saveNewRecipe" type="button">Save</button>
-    </section>
-
     <datalist id="ingredientDatalist"></datalist>
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="enhancements.js?v=20260716a"></script>
-  <script src="app.js?v=20260716a"></script>
-  <script src="daily-food-picker.js?v=20260716c"></script>
+  <script src="enhancements.js?v=20260719b"></script>
+  <script src="app.js?v=20260719b"></script>
+  <script src="daily-food-picker.js?v=20260719b"></script>
   <script src="queue-import.js?v=20260719a"></script>
   <script src="canonical-sync.js?v=20260719a"></script>
 </body>
