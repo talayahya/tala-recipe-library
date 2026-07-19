@@ -1,5 +1,5 @@
 (() => {
-  const QUEUE_URL = 'log-queue.json';
+  const QUEUE_URL = 'https://raw.githubusercontent.com/talayahya/tala-recipe-library/main/log-queue.json';
   const POLL_MS = 20000;
   let importing = false;
 
