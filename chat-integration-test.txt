@@ -1,2 +1,0 @@
-Food Log cross-chat GitHub write test.
-Created temporarily to verify that project chats can write to the repository.
