@@ -46,13 +46,14 @@ supabase functions deploy food-lookup
 
 See `supabase/functions/food-lookup/README.md` for provider setup details.
 
-## Free voice input
+## Free in-app voice input
 
-The Voice button uses free device dictation only. It does not record audio in the
-app, call the OpenAI API, or call the `voice-transcribe` Edge Function.
+The Voice button uses the browser's built-in speech recognition and a local Web
+Audio meter. It does not call the OpenAI API or the `voice-transcribe` Edge
+Function.
 
-Tapping Voice focuses the food box so mobile users can use the phone keyboard
-microphone, then tap Find food to review matches before logging.
+The transcript is written into the Add food box. Tapping Find food searches for
+matches and still requires approval before anything is logged.
 
 ### One-time Supabase setup
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260720b">
+  <link rel="stylesheet" href="styles.css?v=20260720c">
 </head>
 <body>
   <header>
@@ -160,9 +160,26 @@
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="foodVoicePanel" class="voice-panel hidden" role="status" aria-live="polite">
+    <div class="voice-panel-main">
+      <div class="voice-copy">
+        <strong id="foodVoiceStatus">Listening...</strong>
+        <span id="foodVoiceTranscript">...</span>
+      </div>
+      <button id="foodVoiceStop" class="voice-stop" type="button">Stop</button>
+    </div>
+    <div id="foodVoiceMeter" class="voice-meter" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="voice-actions">
+      <button id="foodVoiceCancel" type="button">Cancel</button>
+      <button id="foodVoiceFind" type="button">Find food</button>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="enhancements.js?v=20260719c"></script>
-  <script src="app.js?v=20260720f"></script>
+  <script src="app.js?v=20260720g"></script>
   <script src="queue-import.js?v=20260720a"></script>
   <script src="canonical-sync.js?v=20260719a"></script>
 </body>
