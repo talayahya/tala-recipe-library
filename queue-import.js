@@ -53,16 +53,22 @@
     };
   }
 
-  function alreadyImported(date, entry) {
-    const entries = getEntriesForDate(date) || [];
-    const signature = entrySignature(entry);
-    return entries.some(existing => existing.id === entry.id || entrySignature(existing) === signature);
+  function normalizedTime(value) {
+    if (typeof normalTime === 'function') return normalTime(value);
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? String(value || '') : parsed.toISOString().slice(0, 19);
+  }
+
+  function sameQueuedOrigin(existing, incoming) {
+    return String(existing?.label || '').trim().toLowerCase() === String(incoming?.label || '').trim().toLowerCase() &&
+      normalizedTime(existing?.createdAt) === normalizedTime(incoming?.createdAt);
   }
 
   async function importQueue() {
     if (!ready() || importing) return;
     importing = true;
     let imported = 0;
+    let corrected = 0;
 
     try {
       const response = await fetch(`${QUEUE_URL}?v=${Date.now()}`, { cache: 'no-store' });
@@ -74,11 +80,30 @@
         const candidate = candidateFromQueue(item);
         if (!candidate) continue;
         const { date, entry } = candidate;
-        if (alreadyImported(date, entry)) continue;
 
         if (!dailyLog[date]) dailyLog[date] = { entries: [] };
         if (!Array.isArray(dailyLog[date].entries)) dailyLog[date].entries = [];
-        dailyLog[date].entries.push(entry);
+        const entries = dailyLog[date].entries;
+        const signature = entrySignature(entry);
+
+        if (entries.some(existing => existing.id === entry.id || entrySignature(existing) === signature)) continue;
+
+        const correctionIndex = entries.findIndex(existing => sameQueuedOrigin(existing, entry));
+        if (correctionIndex >= 0) {
+          const existing = entries[correctionIndex];
+          if (typeof supabaseUser !== 'undefined' && supabaseUser && typeof isUUID === 'function' && isUUID(existing.id) && typeof deleteSupabaseEntry === 'function') {
+            await deleteSupabaseEntry(existing.id);
+          }
+          entries[correctionIndex] = entry;
+          saveDailyLog();
+          if (typeof supabaseUser !== 'undefined' && supabaseUser && typeof saveEntryToSupabase === 'function') {
+            await saveEntryToSupabase(date, entry, true);
+          }
+          corrected += 1;
+          continue;
+        }
+
+        entries.push(entry);
         saveDailyLog();
         imported += 1;
 
@@ -87,11 +112,15 @@
         }
       }
 
-      if (imported) {
+      if (imported || corrected) {
         saveDailyLog();
         renderDailyTracker();
         renderHistory();
-        if (typeof showToast === 'function') showToast(`Imported ${imported} logged meal${imported === 1 ? '' : 's'}`);
+        if (typeof showToast === 'function') {
+          if (corrected && !imported) showToast(`Corrected ${corrected} logged meal${corrected === 1 ? '' : 's'}`);
+          else if (imported && !corrected) showToast(`Imported ${imported} logged meal${imported === 1 ? '' : 's'}`);
+          else showToast(`Imported ${imported} · corrected ${corrected}`);
+        }
         if (typeof publishCanonicalFoodDatabase === 'function') publishCanonicalFoodDatabase();
       }
     } catch (error) {
