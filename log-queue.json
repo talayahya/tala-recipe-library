@@ -82,6 +82,48 @@
           "unit": "g"
         }
       ]
+    },
+    {
+      "id": "chat-20260720-cornflake-chicken-tenders-sweet-potato",
+      "date": "2026-07-20",
+      "label": "Cornflake Chicken Tenders & Sweet Potato",
+      "createdAt": "2026-07-20T20:30:00.000Z",
+      "macros": {
+        "calories": 751.08,
+        "protein": 64.034,
+        "carbs": 103.24,
+        "fat": 6.952,
+        "fibre": 9.336,
+        "addedSugar": 0,
+        "naturalSugar": 42.08
+      },
+      "details": [
+        {
+          "name": "Tesco British Chicken Breast Mini Fillets",
+          "amount": 218,
+          "unit": "g"
+        },
+        {
+          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
+          "amount": 32,
+          "unit": "g"
+        },
+        {
+          "name": "Egg Whites",
+          "amount": 46,
+          "unit": "g"
+        },
+        {
+          "name": "Frylight Olive Oil Spray",
+          "amount": 10,
+          "unit": "sprays"
+        },
+        {
+          "name": "Tesco Sweet Potato",
+          "amount": 360,
+          "unit": "g"
+        }
+      ]
     }
   ]
 }
