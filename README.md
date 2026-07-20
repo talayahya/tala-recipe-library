@@ -46,6 +46,19 @@ supabase functions deploy food-lookup
 
 See `supabase/functions/food-lookup/README.md` for provider setup details.
 
+## Voice transcription backend
+
+The Voice button can use browser dictation as a fallback, or high-accuracy
+OpenAI transcription through `supabase/functions/voice-transcribe` when you are
+logged in. The OpenAI key must stay in Supabase secrets, never in frontend code.
+
+```powershell
+supabase secrets set OPENAI_API_KEY="your_openai_api_key"
+supabase functions deploy voice-transcribe
+```
+
+See `supabase/functions/voice-transcribe/README.md` for setup details.
+
 ### One-time Supabase setup
 
 1. **Database + RLS** — In the Supabase dashboard → SQL Editor, paste and run

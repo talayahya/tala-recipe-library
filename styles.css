@@ -69,8 +69,10 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid r
 .add-card{padding:12px}
 .add-card-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .add-card-header h2{font-size:18px;font-weight:850}
+.add-card-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .camera-button{border:1px solid var(--border);border-radius:8px;padding:9px 11px;background:var(--accent-soft);color:var(--accent-strong);font-weight:800;cursor:pointer}
+.voice-button.listening{background:var(--danger);color:#fff;border-color:var(--danger)}
 .smart-add{display:grid;gap:8px}
 .smart-add-row{display:grid;grid-template-columns:76px 28px auto;gap:6px;align-items:center}
 .smart-add-row input{width:100%;min-width:0}
@@ -82,6 +84,7 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid r
 .lookup-results-head{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;font-weight:800}
 .lookup-results-head span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lookup-results-head button{padding:5px 9px;background:transparent;border:1px solid var(--border);color:var(--accent);font-size:12px}
+.lookup-head-actions{display:flex;align-items:center;gap:6px;flex:none}
 .lookup-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:10px}
 .lookup-card div{display:grid;gap:2px;min-width:0}
 .lookup-card strong,.lookup-card span,.lookup-card small{min-width:0;overflow:hidden;text-overflow:ellipsis}

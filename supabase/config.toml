@@ -1,2 +1,5 @@
 [functions.food-lookup]
 verify_jwt = false
+
+[functions.voice-transcribe]
+verify_jwt = false

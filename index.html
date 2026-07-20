@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260720a">
+  <link rel="stylesheet" href="styles.css?v=20260720b">
 </head>
 <body>
   <header>
@@ -56,12 +56,15 @@
       <section class="card add-card">
         <div class="add-card-header">
           <h2>Add food</h2>
-          <label class="camera-button" for="labelPhotoInput">Camera</label>
+          <div class="add-card-tools">
+            <button id="voiceFoodInput" class="camera-button voice-button" type="button" aria-label="Dictate food" aria-pressed="false">Voice</button>
+            <label class="camera-button" for="labelPhotoInput">Camera</label>
+          </div>
           <input id="labelPhotoInput" class="visually-hidden" type="file" accept="image/*" capture="environment">
         </div>
         <div class="smart-add">
           <div class="ingredient-lookup food-lookup">
-            <input id="foodLookupInput" list="ingredientDatalist" type="search" placeholder="Tell me what you ate, scan barcode, or search food" autocomplete="off">
+            <input id="foodLookupInput" list="ingredientDatalist" type="search" placeholder="Describe a meal, search food, or scan a label" autocomplete="off">
             <div class="ingredient-suggestions hidden"></div>
           </div>
           <div class="smart-add-row">
@@ -159,7 +162,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="enhancements.js?v=20260719c"></script>
-  <script src="app.js?v=20260720c"></script>
+  <script src="app.js?v=20260720d"></script>
   <script src="queue-import.js?v=20260720a"></script>
   <script src="canonical-sync.js?v=20260719a"></script>
 </body>
