@@ -42,6 +42,46 @@
           "unit": "scoop"
         }
       ]
+    },
+    {
+      "id": "chat-20260720-141024-egg-carb-balance-wrap",
+      "date": "2026-07-20",
+      "label": "Egg & Eatlean Carb Balance Wrap",
+      "createdAt": "2026-07-20T14:10:24.573Z",
+      "macros": {
+        "calories": 432.78,
+        "protein": 42.396,
+        "carbs": 20.672,
+        "fat": 22.384,
+        "fibre": 15.39,
+        "addedSugar": 0,
+        "naturalSugar": 0.39
+      },
+      "details": [
+        {
+          "name": "Egg, edible weight",
+          "amount": 4,
+          "unit": "item",
+          "gramsPerItem": 44,
+          "macroAmount": 176,
+          "macroUnit": "g"
+        },
+        {
+          "name": "Mission Carb Balance Original Wrap",
+          "amount": 1,
+          "unit": "item"
+        },
+        {
+          "name": "Lettuce",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "name": "Eatlean Original Protein Grated Cheese",
+          "amount": 30,
+          "unit": "g"
+        }
+      ]
     }
   ]
 }
