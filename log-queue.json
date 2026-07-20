@@ -1,4 +1,42 @@
 {
   "version": 1,
-  "entries": []
+  "entries": [
+    {
+      "id": "chat-20260720-095738-yogurt-bowl",
+      "date": "2026-07-20",
+      "label": "Yogurt Bowl",
+      "createdAt": "2026-07-20T08:57:38.000Z",
+      "macros": {
+        "calories": 341.15,
+        "protein": 24.125,
+        "carbs": 56.445,
+        "fat": 2.465,
+        "fibre": 4.885,
+        "addedSugar": 0,
+        "naturalSugar": 14.29
+      },
+      "details": [
+        {
+          "name": "FAGE 0% Greek Yogurt",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "name": "Chia Seeds",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "name": "Blueberries",
+          "amount": 70,
+          "unit": "g"
+        },
+        {
+          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
+          "amount": 45,
+          "unit": "g"
+        }
+      ]
+    }
+  ]
 }
