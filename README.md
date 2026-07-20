@@ -48,9 +48,9 @@ See `supabase/functions/food-lookup/README.md` for provider setup details.
 
 ## Free in-app voice input
 
-The Voice button uses the browser's built-in speech recognition and a local Web
-Audio meter. It does not call the OpenAI API or the `voice-transcribe` Edge
-Function.
+The Voice button uses the browser's built-in speech recognition and an animated
+listening meter. It does not call the OpenAI API or the `voice-transcribe` Edge
+Function, and it does not open a second microphone stream for the meter.
 
 The transcript is cleaned up, written into the Add food box, split into meal
 items such as `100 g yogurt, 50 g blueberries, 5 g chia seeds`, and searched as a

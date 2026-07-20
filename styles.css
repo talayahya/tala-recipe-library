@@ -208,6 +208,9 @@ body.voice-panel-open{padding-bottom:190px}
 .voice-stop:disabled{opacity:.45;transform:none}
 .voice-meter{height:34px;display:flex;align-items:center;gap:4px;padding:3px 1px}
 .voice-meter span{--level:.2;flex:1;min-width:0;height:28px;border-radius:999px;background:linear-gradient(180deg,var(--accent-strong),var(--accent));transform:scaleY(var(--level));transform-origin:center;transition:transform .08s linear,opacity .16s ease;opacity:.9}
+.voice-panel.listening .voice-meter span{animation:voicePulse .84s ease-in-out infinite}
+.voice-panel.listening .voice-meter span:nth-child(2n){animation-delay:.08s}
+.voice-panel.listening .voice-meter span:nth-child(3n){animation-delay:.16s}
 .voice-panel:not(.listening) .voice-meter span{opacity:.5}
 .voice-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .voice-actions button{background:var(--soft);color:var(--accent-strong)}
@@ -230,6 +233,7 @@ body.voice-panel-open{padding-bottom:190px}
 /* motion */
 .tab-panel.active{animation:tabIn .28s ease}
 @keyframes tabIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes voicePulse{0%,100%{transform:scaleY(.18)}50%{transform:scaleY(.92)}}
 .tab-button,.chip,.icon-btn,.entry-btn,button{transition:background .16s ease,color .16s ease,transform .08s ease,box-shadow .2s ease}
 .card,.entry-card{transition:box-shadow .2s ease}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
