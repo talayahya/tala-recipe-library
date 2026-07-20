@@ -41,7 +41,7 @@ Deno.serve(async (req) => {
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     console.error("OpenAI transcription failed", data);
-    return json({ error: "Voice transcription failed." }, 502);
+    return json({ error: openAiErrorMessage(response.status, data) }, 502);
   }
 
   return json({ text: String(data.text || "").trim(), model: "gpt-4o-transcribe" });
@@ -67,4 +67,23 @@ function json(body: unknown, status = 200): Response {
     status,
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
+}
+
+function openAiErrorMessage(status: number, data: any): string {
+  const error = data?.error || {};
+  const code = String(error.code || error.type || "");
+  const message = String(error.message || "");
+  const combined = `${code} ${message}`;
+
+  if (status === 401 || /invalid.*key|incorrect.*key|api.?key/i.test(combined)) {
+    return "OpenAI API key was rejected.";
+  }
+  if (status === 429 || /quota|billing|rate limit|insufficient/i.test(combined)) {
+    return "OpenAI billing or quota needs attention.";
+  }
+  if (status === 400 || /audio|file|format/i.test(combined)) {
+    return "OpenAI could not read that audio. Try recording again.";
+  }
+
+  return "Voice transcription failed. Try again.";
 }
