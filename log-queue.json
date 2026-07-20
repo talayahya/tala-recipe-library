@@ -7,13 +7,13 @@
       "label": "Yogurt Bowl",
       "createdAt": "2026-07-20T08:57:38.000Z",
       "macros": {
-        "calories": 341.15,
-        "protein": 24.125,
-        "carbs": 56.445,
-        "fat": 2.465,
-        "fibre": 4.885,
+        "calories": 471.15,
+        "protein": 50.125,
+        "carbs": 59.145,
+        "fat": 4.365,
+        "fibre": 5.785,
         "addedSugar": 0,
-        "naturalSugar": 14.29
+        "naturalSugar": 16.49
       },
       "details": [
         {
@@ -35,6 +35,11 @@
           "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
           "amount": 45,
           "unit": "g"
+        },
+        {
+          "name": "USN Whey Protein Powder",
+          "amount": 1,
+          "unit": "scoop"
         }
       ]
     }
