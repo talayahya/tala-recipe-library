@@ -180,7 +180,7 @@ function setupEvents(){
   });
   document.getElementById('searchOnlineFood')?.addEventListener('click',runOnlineFoodSearch);
   document.getElementById('foodLookupResults')?.addEventListener('click',e=>{
-    if(e.target.closest('[data-clear-food-results]')){renderFoodLookupCandidates([]);setLookupStatus('');return}
+    if(e.target.closest('[data-clear-food-results]')){const input=document.getElementById('foodLookupInput');if(input)input.value='';updateFoodLookupUnit();renderFoodLookupCandidates([]);setLookupStatus('');return}
     const b=e.target.closest('[data-use-food-candidate]');
     if(!b)return;
     const c=foodLookupCandidates[Number(b.dataset.useFoodCandidate)];
