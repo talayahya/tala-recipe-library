@@ -46,18 +46,13 @@ supabase functions deploy food-lookup
 
 See `supabase/functions/food-lookup/README.md` for provider setup details.
 
-## Voice transcription backend
+## Free voice input
 
-The Voice button can use browser dictation as a fallback, or high-accuracy
-OpenAI transcription through `supabase/functions/voice-transcribe` when you are
-logged in. The OpenAI key must stay in Supabase secrets, never in frontend code.
+The Voice button uses free device dictation only. It does not record audio in the
+app, call the OpenAI API, or call the `voice-transcribe` Edge Function.
 
-```powershell
-supabase secrets set OPENAI_API_KEY="your_openai_api_key"
-supabase functions deploy voice-transcribe
-```
-
-See `supabase/functions/voice-transcribe/README.md` for setup details.
+Tapping Voice focuses the food box so mobile users can use the phone keyboard
+microphone, then tap Find food to review matches before logging.
 
 ### One-time Supabase setup
 
