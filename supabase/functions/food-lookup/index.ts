@@ -19,6 +19,11 @@ type FoodCandidate = {
   macros: Macros;
 };
 
+type CuratedFood = FoodCandidate & {
+  searchTerms: string[];
+  rejectTerms?: string[];
+};
+
 type ProviderStatus = {
   name: string;
   status: "ok" | "not_configured" | "error";
@@ -43,6 +48,36 @@ const offFields = [
   "countries_tags",
 ].join(",");
 
+const curatedFoods: CuratedFood[] = [
+  {
+    id: "wasabi-uk-tofu-curry-bento-2025-09",
+    name: "Tofu Curry Bento - Wasabi",
+    unit: "100g",
+    source: "Wasabi UK",
+    sourceId: "wasabi-nutrition-guide-2025-09-tofu-curry-bento",
+    defaultAmount: 500,
+    note: "Official Wasabi nutrition guide, Sep 2025. Standard portion 500g, 726 kcal. Fibre not listed by source.",
+    searchTerms: [
+      "wasabi tofu curry bento",
+      "wasabi tofu curry",
+      "tofu curry bento",
+      "yasai tofu curry bento",
+      "wasabi vegan curry bento",
+      "wasabi curry bento",
+    ],
+    rejectTerms: ["chicken", "beef", "duck", "salmon", "prawn", "pumpkin", "katsu", "gyoza", "yakisoba"],
+    macros: {
+      calories: 145,
+      protein: 3.1,
+      carbs: 22.3,
+      fat: 4.8,
+      fibre: 0,
+      addedSugar: 0,
+      naturalSugar: 1.4,
+    },
+  },
+];
+
 let fatSecretToken = "";
 let fatSecretTokenExpiresAt = 0;
 
@@ -56,6 +91,7 @@ Deno.serve(async (req) => {
 
   const providers: ProviderStatus[] = [];
   const providerRuns: Promise<{ status: ProviderStatus; candidates: FoodCandidate[] }>[] = [
+    runProvider("Curated restaurants", async () => searchCuratedFoods(query)),
     runProvider("Open Food Facts", () => searchOpenFoodFacts(query)),
   ];
 
@@ -101,23 +137,80 @@ async function runProvider(
   }
 }
 
+function searchCuratedFoods(query: string): FoodCandidate[] {
+  const q = normalizeSearchText(query);
+  const tokens = usefulTokens(q);
+  if (!tokens.length) return [];
+
+  return curatedFoods
+    .map((food) => ({ food, score: curatedFoodScore(food, q, tokens) }))
+    .filter((item) => item.score >= 0.62)
+    .sort((a, b) => b.score - a.score)
+    .map((item) => publicCuratedCandidate(item.food));
+}
+
+function curatedFoodScore(food: CuratedFood, q: string, tokens: string[]): number {
+  const searchable = normalizeSearchText([food.name, ...food.searchTerms].join(" "));
+  if ((food.rejectTerms || []).some((term) => tokens.includes(term) && !searchable.includes(term))) return 0;
+  if (food.searchTerms.some((term) => normalizeSearchText(term) === q)) return 1;
+  if (food.searchTerms.some((term) => normalizeSearchText(term).includes(q) || q.includes(normalizeSearchText(term)))) return 0.92;
+  const matches = tokens.filter((token) => searchable.includes(token)).length;
+  const requiredBoost = tokens.includes("wasabi") || tokens.includes("tofu") ? 0.08 : 0;
+  return matches / tokens.length + requiredBoost;
+}
+
+function publicCuratedCandidate(food: CuratedFood): FoodCandidate {
+  const { searchTerms: _searchTerms, rejectTerms: _rejectTerms, ...candidate } = food;
+  return candidate;
+}
+
 async function searchOpenFoodFacts(query: string): Promise<FoodCandidate[]> {
   const seen = new Set<string>();
   const out: FoodCandidate[] = [];
+  let lastError: unknown = null;
 
   if (/^\d{8,14}$/.test(query)) {
-    const productUrl = `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(query)}?fields=${encodeURIComponent(offFields)}`;
-    const data = await fetchJson(productUrl, openFoodFactsHeaders());
-    pushUnique(out, seen, openFoodFactsProductToCandidate(data.product));
+    try {
+      const productUrl = `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(query)}?fields=${encodeURIComponent(offFields)}`;
+      const data = await fetchJson(productUrl, openFoodFactsHeaders());
+      pushUnique(out, seen, openFoodFactsProductToCandidate(data.product));
+    } catch (error) {
+      lastError = error;
+    }
   }
 
-  const searchUrl = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=8&fields=${encodeURIComponent(offFields)}`;
-  const data = await fetchJson(searchUrl, openFoodFactsHeaders());
-  for (const product of data.products || []) {
-    pushUnique(out, seen, openFoodFactsProductToCandidate(product));
+  for (const variant of searchVariants(query).slice(0, 5)) {
+    try {
+      const searchUrl = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(variant)}&search_simple=1&action=process&json=1&page_size=8&fields=${encodeURIComponent(offFields)}`;
+      const data = await fetchJson(searchUrl, openFoodFactsHeaders());
+      for (const product of data.products || []) {
+        pushUnique(out, seen, openFoodFactsProductToCandidate(product));
+      }
+      if (out.length) break;
+    } catch (error) {
+      lastError = error;
+    }
   }
 
+  if (!out.length && lastError) throw lastError;
   return out;
+}
+
+function searchVariants(query: string): string[] {
+  const q = normalizeSearchText(query);
+  if (!q) return [];
+  const tokens = usefulTokens(q);
+  const variants = [q];
+  if (tokens.length > 2) variants.push(tokens.join(" "));
+  if (tokens.includes("wasabi") && tokens.includes("curry") && tokens.includes("bento")) {
+    variants.push("wasabi curry bento", "tofu curry bento", "curry bento");
+  }
+  if (tokens.length > 3) {
+    for (const token of tokens) {
+      variants.push(tokens.filter((item) => item !== token).join(" "));
+    }
+  }
+  return [...new Set(variants.filter(Boolean))];
 }
 
 function openFoodFactsHeaders(): RequestInit {
@@ -383,6 +476,21 @@ function pushUnique(out: FoodCandidate[], seen: Set<string>, candidate: FoodCand
 function asArray(value: any): any[] {
   if (!value) return [];
   return Array.isArray(value) ? value : [value];
+}
+
+function normalizeSearchText(value: unknown): string {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function usefulTokens(value: string): string[] {
+  const stopWords = new Set(["a", "an", "and", "the", "with", "from", "food", "meal"]);
+  return normalizeSearchText(value)
+    .split(" ")
+    .filter((token) => token.length > 1 && !stopWords.has(token));
 }
 
 function safeNum(value: unknown): number {
