@@ -1,0 +1,14 @@
+[
+  {
+    "id": "kelloggs-rice-krispies-squares-marshmallow",
+    "name": "Kellogg's Rice Krispies Squares Chewy Tastic Marshmallow",
+    "unit": "item",
+    "calories": 119,
+    "protein": 0.8,
+    "carbs": 21,
+    "fat": 3.4,
+    "fibre": 0.3,
+    "addedSugar": 9,
+    "naturalSugar": 0
+  }
+]
