@@ -22,6 +22,30 @@ The daily food log saves to `localStorage` always, and additionally syncs to
 Supabase when you are logged in (email + password). Entries then persist across
 refreshes and devices.
 
+## Food lookup backend
+
+The Today page can search saved foods, public Open Food Facts data, and optional
+private food databases through the Supabase Edge Function at
+`supabase/functions/food-lookup`.
+
+The function keeps private API keys out of the browser. With no secrets
+configured it still searches Open Food Facts. Add provider secrets in Supabase to
+turn on richer results:
+
+- Nutritionix: `NUTRITIONIX_APP_ID`, `NUTRITIONIX_APP_KEY`
+- Optional Nutritionix UK branded filter: `NUTRITIONIX_BRANDED_REGION=2`
+- FatSecret: `FATSECRET_CLIENT_ID`, `FATSECRET_CLIENT_SECRET`
+- Optional FatSecret UK/localization filter: `FATSECRET_REGION=GB`
+
+Deploy it with:
+
+```powershell
+supabase link --project-ref dnpfritorhkyqfxqicnd
+supabase functions deploy food-lookup
+```
+
+See `supabase/functions/food-lookup/README.md` for provider setup details.
+
 ### One-time Supabase setup
 
 1. **Database + RLS** — In the Supabase dashboard → SQL Editor, paste and run

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food Log</title>
-  <link rel="stylesheet" href="styles.css?v=20260719b">
+  <link rel="stylesheet" href="styles.css?v=20260719c">
 </head>
 <body>
   <header>
@@ -54,15 +54,33 @@
       </div>
 
       <section class="card add-card">
-        <div class="add-row">
-          <input id="manualName" type="text" placeholder="Add food…">
-          <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
-          <button id="addManualEntry" type="button">Add</button>
+        <div class="add-card-header">
+          <h2>Add food</h2>
+          <label class="camera-button" for="labelPhotoInput">Camera</label>
+          <input id="labelPhotoInput" class="visually-hidden" type="file" accept="image/*" capture="environment">
         </div>
+        <div class="smart-add">
+          <div class="ingredient-lookup food-lookup">
+            <input id="foodLookupInput" list="ingredientDatalist" type="search" placeholder="Tell me what you ate, scan barcode, or search food" autocomplete="off">
+            <div class="ingredient-suggestions hidden"></div>
+          </div>
+          <div class="smart-add-row">
+            <input id="foodLookupAmount" type="number" min="0" step="1" value="100" aria-label="Amount">
+            <span id="foodLookupUnit">g</span>
+            <button id="addSavedFoodToDay" type="button">Add</button>
+          </div>
+        </div>
+        <div class="smart-actions">
+          <button id="searchOnlineFood" type="button">Find food</button>
+          <button id="addManualEntry" type="button">Add custom</button>
+        </div>
+        <div id="foodLookupStatus" class="lookup-status"></div>
+        <div id="foodLookupResults" class="lookup-results"></div>
         <div id="recentFoods" class="recents hidden"></div>
         <details class="more-macros">
-          <summary>More macros</summary>
+          <summary>Custom macros</summary>
           <div class="manual-grid">
+            <input id="manualCalories" type="number" min="0" step="1" placeholder="kcal">
             <input id="manualProtein" type="number" min="0" step="0.1" placeholder="protein">
             <input id="manualCarbs" type="number" min="0" step="0.1" placeholder="carbs">
             <input id="manualFat" type="number" min="0" step="0.1" placeholder="fat">
@@ -108,7 +126,10 @@
         <input id="newRecipeName" type="text" placeholder="Recipe name">
         <input id="newRecipeTags" type="text" placeholder="Tags, separated by commas">
         <div class="builder-row">
-          <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient">
+          <div class="ingredient-lookup">
+            <input id="newRecipeIngredientSearch" list="ingredientDatalist" type="search" placeholder="Search ingredient" autocomplete="off">
+            <div class="ingredient-suggestions hidden"></div>
+          </div>
           <input id="newRecipeIngredientAmount" type="number" min="0" step="1" value="100">
           <button id="addBuilderIngredient" type="button">Add</button>
         </div>
@@ -137,9 +158,8 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="enhancements.js?v=20260719b"></script>
-  <script src="app.js?v=20260719b"></script>
-  <script src="daily-food-picker.js?v=20260719b"></script>
+  <script src="enhancements.js?v=20260719c"></script>
+  <script src="app.js?v=20260719d"></script>
   <script src="queue-import.js?v=20260720a"></script>
   <script src="canonical-sync.js?v=20260719a"></script>
 </body>

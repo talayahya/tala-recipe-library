@@ -1,0 +1,2 @@
+[functions.food-lookup]
+verify_jwt = false

@@ -61,6 +61,13 @@
       input.setAttribute('list','ingredientDatalist');
       input.setAttribute('autocomplete','off');
       input.classList.add('ingredient-lookup-input');
+      if(!input.closest('.ingredient-lookup')){
+        const wrap=document.createElement('div');
+        wrap.className='ingredient-lookup';
+        input.parentNode.insertBefore(wrap,input);
+        wrap.appendChild(input);
+        wrap.insertAdjacentHTML('beforeend','<div class="ingredient-suggestions hidden"></div>');
+      }
       input.dataset.upgraded='1';
     });
     const builder=document.getElementById('newRecipeIngredientSearch');
@@ -68,6 +75,8 @@
       builder.setAttribute('list','ingredientDatalist');
       builder.setAttribute('autocomplete','off');
       builder.classList.add('ingredient-lookup-input');
+      const wrap=builder.closest('.ingredient-lookup');
+      if(wrap&&!wrap.querySelector('.ingredient-suggestions'))wrap.insertAdjacentHTML('beforeend','<div class="ingredient-suggestions hidden"></div>');
       builder.dataset.upgraded='1';
     }
   }
@@ -174,7 +183,7 @@
 
   function ingredientRowHtml(id,amount){
     const ing=ingredientList.find(i=>i.id===id);
-    return `<div class="editor-ingredient-row"><input type="search" list="ingredientDatalist" autocomplete="off" placeholder="Search ingredient" data-editor-ingredient value="${escapeHtml(ing?.name||'')}"><input type="number" min="0" step="0.1" data-editor-amount value="${Number(amount||0)}"><button type="button" data-editor-remove-row>×</button></div>`;
+    return `<div class="editor-ingredient-row"><div class="ingredient-lookup"><input type="search" list="ingredientDatalist" autocomplete="off" placeholder="Search ingredient" data-editor-ingredient value="${escapeHtml(ing?.name||'')}"><div class="ingredient-suggestions hidden"></div></div><input type="number" min="0" step="0.1" data-editor-amount value="${Number(amount||0)}"><button type="button" data-editor-remove-row>×</button></div>`;
   }
 
   function wireRecipeEditClicks(){
