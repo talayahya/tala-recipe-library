@@ -60,5 +60,6 @@
   {"id":"mixed-beans-can","name":"Mixed Beans in Tomato Sauce","unit":"100g","calories":69,"protein":3.9,"carbs":11.1,"fat":0.2,"fibre":3.6,"addedSugar":0,"naturalSugar":2},
   {"id":"tesco-cocoa-powder","name":"Tesco Unsweetened Cocoa Powder","unit":"100g","calories":230,"protein":23,"carbs":14,"fat":14,"fibre":32,"addedSugar":0,"naturalSugar":1},
   {"id":"marvel-skimmed-milk-powder","name":"Marvel Dried Skimmed Milk Powder","unit":"100g","calories":373,"protein":34.7,"carbs":47,"fat":0.8,"fibre":0,"addedSugar":0,"naturalSugar":47},
-  {"id":"freee-organic-corn-flakes","name":"FREEE by Doves Farm Gluten Free Organic Corn Flakes","unit":"100g","calories":379,"protein":7.2,"carbs":83,"fat":1.6,"fibre":3.3,"addedSugar":0,"naturalSugar":1}
+  {"id":"freee-organic-corn-flakes","name":"FREEE by Doves Farm Gluten Free Organic Corn Flakes","unit":"100g","calories":379,"protein":7.2,"carbs":83,"fat":1.6,"fibre":3.3,"addedSugar":0,"naturalSugar":1},
+  {"id":"tesco-chicken-breast-mini-fillets","name":"Tesco British Chicken Breast Mini Fillets","unit":"100g raw","calories":114,"protein":24.2,"carbs":0,"fat":2,"fibre":0,"addedSugar":0,"naturalSugar":0}
 ]
