@@ -165,6 +165,42 @@
           "unit": "scoop"
         }
       ]
+    },
+    {
+      "id": "chat-20260721-popcorn-houmous-mini-carrots-01",
+      "date": "2026-07-21",
+      "label": "Popcorn, Reduced-Fat Houmous & Mini Carrots",
+      "macros": {
+        "calories": 925.4,
+        "protein": 27.46,
+        "carbs": 143.64,
+        "fat": 24.88,
+        "fibre": 22.07,
+        "addedSugar": 0,
+        "naturalSugar": 15.13
+      },
+      "details": [
+        {
+          "name": "Sea Isle Popcorn Kernels",
+          "amount": 150,
+          "unit": "g raw"
+        },
+        {
+          "name": "Frylight Olive Oil Spray",
+          "amount": 12,
+          "unit": "sprays"
+        },
+        {
+          "name": "Sainsbury's Houmous, Be Good To Yourself",
+          "amount": 200,
+          "unit": "g"
+        },
+        {
+          "name": "Sainsbury's British Prepared Mini Carrots",
+          "amount": 240,
+          "unit": "g raw"
+        }
+      ]
     }
   ]
 }
