@@ -61,5 +61,8 @@
   {"id":"tesco-cocoa-powder","name":"Tesco Unsweetened Cocoa Powder","unit":"100g","calories":230,"protein":23,"carbs":14,"fat":14,"fibre":32,"addedSugar":0,"naturalSugar":1},
   {"id":"marvel-skimmed-milk-powder","name":"Marvel Dried Skimmed Milk Powder","unit":"100g","calories":373,"protein":34.7,"carbs":47,"fat":0.8,"fibre":0,"addedSugar":0,"naturalSugar":47},
   {"id":"freee-organic-corn-flakes","name":"FREEE by Doves Farm Gluten Free Organic Corn Flakes","unit":"100g","calories":379,"protein":7.2,"carbs":83,"fat":1.6,"fibre":3.3,"addedSugar":0,"naturalSugar":1},
-  {"id":"tesco-chicken-breast-mini-fillets","name":"Tesco British Chicken Breast Mini Fillets","unit":"100g raw","calories":114,"protein":24.2,"carbs":0,"fat":2,"fibre":0,"addedSugar":0,"naturalSugar":0}
+  {"id":"tesco-chicken-breast-mini-fillets","name":"Tesco British Chicken Breast Mini Fillets","unit":"100g raw","calories":114,"protein":24.2,"carbs":0,"fat":2,"fibre":0,"addedSugar":0,"naturalSugar":0},
+  {"id":"sea-isle-popcorn-kernels","name":"Sea Isle Popcorn Kernels","unit":"100g","calories":322,"protein":8.2,"carbs":64,"fat":3.6,"fibre":3.7,"addedSugar":0,"naturalSugar":1.5},
+  {"id":"sainsburys-bgty-reduced-fat-houmous","name":"Sainsbury's Be Good To Yourself Reduced Fat Houmous","unit":"100g","calories":166,"protein":6.5,"carbs":12.3,"fat":8.9,"fibre":4.9,"addedSugar":0,"naturalSugar":0.8},
+  {"id":"frylight-olive-oil-spray","name":"Frylight Olive Oil Spray (1 spray)","unit":"item","calories":1,"protein":0,"carbs":0,"fat":0.1,"fibre":0,"addedSugar":0,"naturalSugar":0}
 ]
