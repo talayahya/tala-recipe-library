@@ -124,6 +124,47 @@
           "unit": "g"
         }
       ]
+    },
+    {
+      "id": "chat-20260721-yogurt-bowl-whey-01",
+      "date": "2026-07-21",
+      "label": "Yogurt Bowl with Whey",
+      "macros": {
+        "calories": 405.07,
+        "protein": 49.015,
+        "carbs": 43.387,
+        "fat": 4.659,
+        "fibre": 5.813,
+        "addedSugar": 0,
+        "naturalSugar": 16.29
+      },
+      "details": [
+        {
+          "name": "FAGE 0% Greek Yogurt",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "name": "Chia Seeds",
+          "amount": 7,
+          "unit": "g"
+        },
+        {
+          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
+          "amount": 25,
+          "unit": "g"
+        },
+        {
+          "name": "Blueberries",
+          "amount": 70,
+          "unit": "g"
+        },
+        {
+          "name": "USN Whey Protein Powder",
+          "amount": 1,
+          "unit": "scoop"
+        }
+      ]
     }
   ]
 }
