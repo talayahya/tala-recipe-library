@@ -16,31 +16,11 @@
         "naturalSugar": 16.49
       },
       "details": [
-        {
-          "name": "FAGE 0% Greek Yogurt",
-          "amount": 190,
-          "unit": "g"
-        },
-        {
-          "name": "Chia Seeds",
-          "amount": 5,
-          "unit": "g"
-        },
-        {
-          "name": "Blueberries",
-          "amount": 70,
-          "unit": "g"
-        },
-        {
-          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
-          "amount": 45,
-          "unit": "g"
-        },
-        {
-          "name": "USN Whey Protein Powder",
-          "amount": 1,
-          "unit": "scoop"
-        }
+        {"name": "FAGE 0% Greek Yogurt", "amount": 190, "unit": "g"},
+        {"name": "Chia Seeds", "amount": 5, "unit": "g"},
+        {"name": "Blueberries", "amount": 70, "unit": "g"},
+        {"name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes", "amount": 45, "unit": "g"},
+        {"name": "USN Whey Protein Powder", "amount": 1, "unit": "scoop"}
       ]
     },
     {
@@ -58,29 +38,10 @@
         "naturalSugar": 0.39
       },
       "details": [
-        {
-          "name": "Egg, edible weight",
-          "amount": 4,
-          "unit": "item",
-          "gramsPerItem": 44,
-          "macroAmount": 176,
-          "macroUnit": "g"
-        },
-        {
-          "name": "Mission Carb Balance Original Wrap",
-          "amount": 1,
-          "unit": "item"
-        },
-        {
-          "name": "Lettuce",
-          "amount": 30,
-          "unit": "g"
-        },
-        {
-          "name": "Eatlean Original Protein Grated Cheese",
-          "amount": 30,
-          "unit": "g"
-        }
+        {"name": "Egg, edible weight", "amount": 4, "unit": "item", "gramsPerItem": 44, "macroAmount": 176, "macroUnit": "g"},
+        {"name": "Mission Carb Balance Original Wrap", "amount": 1, "unit": "item"},
+        {"name": "Lettuce", "amount": 30, "unit": "g"},
+        {"name": "Eatlean Original Protein Grated Cheese", "amount": 30, "unit": "g"}
       ]
     },
     {
@@ -98,31 +59,11 @@
         "naturalSugar": 42.08
       },
       "details": [
-        {
-          "name": "Tesco British Chicken Breast Mini Fillets",
-          "amount": 218,
-          "unit": "g"
-        },
-        {
-          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
-          "amount": 32,
-          "unit": "g"
-        },
-        {
-          "name": "Egg Whites",
-          "amount": 46,
-          "unit": "g"
-        },
-        {
-          "name": "Frylight Olive Oil Spray",
-          "amount": 10,
-          "unit": "sprays"
-        },
-        {
-          "name": "Tesco Sweet Potato",
-          "amount": 360,
-          "unit": "g"
-        }
+        {"name": "Tesco British Chicken Breast Mini Fillets", "amount": 218, "unit": "g"},
+        {"name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes", "amount": 32, "unit": "g"},
+        {"name": "Egg Whites", "amount": 46, "unit": "g"},
+        {"name": "Frylight Olive Oil Spray", "amount": 10, "unit": "sprays"},
+        {"name": "Tesco Sweet Potato", "amount": 360, "unit": "g"}
       ]
     },
     {
@@ -139,31 +80,11 @@
         "naturalSugar": 16.29
       },
       "details": [
-        {
-          "name": "FAGE 0% Greek Yogurt",
-          "amount": 190,
-          "unit": "g"
-        },
-        {
-          "name": "Chia Seeds",
-          "amount": 7,
-          "unit": "g"
-        },
-        {
-          "name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes",
-          "amount": 25,
-          "unit": "g"
-        },
-        {
-          "name": "Blueberries",
-          "amount": 70,
-          "unit": "g"
-        },
-        {
-          "name": "USN Whey Protein Powder",
-          "amount": 1,
-          "unit": "scoop"
-        }
+        {"name": "FAGE 0% Greek Yogurt", "amount": 190, "unit": "g"},
+        {"name": "Chia Seeds", "amount": 7, "unit": "g"},
+        {"name": "FREEE by Doves Farm Gluten Free Organic Corn Flakes", "amount": 25, "unit": "g"},
+        {"name": "Blueberries", "amount": 70, "unit": "g"},
+        {"name": "USN Whey Protein Powder", "amount": 1, "unit": "scoop"}
       ]
     },
     {
@@ -180,26 +101,10 @@
         "naturalSugar": 15.13
       },
       "details": [
-        {
-          "name": "Sea Isle Popcorn Kernels",
-          "amount": 150,
-          "unit": "g raw"
-        },
-        {
-          "name": "Frylight Olive Oil Spray",
-          "amount": 12,
-          "unit": "sprays"
-        },
-        {
-          "name": "Sainsbury's Houmous, Be Good To Yourself",
-          "amount": 200,
-          "unit": "g"
-        },
-        {
-          "name": "Sainsbury's British Prepared Mini Carrots",
-          "amount": 240,
-          "unit": "g raw"
-        }
+        {"name": "Sea Isle Popcorn Kernels", "amount": 150, "unit": "g raw"},
+        {"name": "Frylight Olive Oil Spray", "amount": 12, "unit": "sprays"},
+        {"name": "Sainsbury's Houmous, Be Good To Yourself", "amount": 200, "unit": "g"},
+        {"name": "Sainsbury's British Prepared Mini Carrots", "amount": 240, "unit": "g raw"}
       ]
     },
     {
@@ -217,11 +122,32 @@
         "naturalSugar": 0
       },
       "details": [
-        {
-          "name": "Maltesers Milk Chocolate",
-          "amount": 9,
-          "unit": "pieces (~18g estimated)"
-        }
+        {"name": "Maltesers Milk Chocolate", "amount": 9, "unit": "pieces (~18g estimated)"}
+      ]
+    },
+    {
+      "id": "chat-20260722-subway-footlong-chicken-tikka-01",
+      "date": "2026-07-22",
+      "label": "Subway Footlong Chicken Tikka",
+      "createdAt": "2026-07-22T17:30:00.000Z",
+      "macros": {
+        "calories": 700,
+        "protein": 57.2,
+        "carbs": 64.8,
+        "fat": 21.2,
+        "fibre": 10.8,
+        "addedSugar": 0,
+        "naturalSugar": 0
+      },
+      "details": [
+        {"name": "Subway Wholegrain Bread", "amount": 1, "unit": "12-inch footlong"},
+        {"name": "Subway Chicken Tikka", "amount": 1, "unit": "footlong portion"},
+        {"name": "Subway American-style Cheese (yellow cheese)", "amount": 1, "unit": "footlong portion"},
+        {"name": "Lettuce", "amount": 1, "unit": "footlong portion"},
+        {"name": "Tomato", "amount": 1, "unit": "footlong portion"},
+        {"name": "Red Onion", "amount": 1, "unit": "footlong portion"},
+        {"name": "Sweetcorn", "amount": 1, "unit": "footlong portion"},
+        {"name": "Lite Mayonnaise", "amount": 1, "unit": "footlong portion"}
       ]
     }
   ]
