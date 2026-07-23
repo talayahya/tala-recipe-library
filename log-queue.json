@@ -93,15 +93,15 @@
       ]
     },
     {
-      "id":"chat-20260722-yogurt-origin-protein-marshmallow-crispy-01",
+      "id":"chat-20260722-yogurt-origin-protein-marshmallow-crispy-correction-01",
       "date":"2026-07-22",
       "label":"Yogurt, Origin Protein & Marshmallow Crispy Square",
       "createdAt":"2026-07-22T21:00:00.000Z",
-      "macros":{"calories":243.8,"protein":33.75,"carbs":19.78,"fat":2.3,"fibre":5.1,"addedSugar":5.6,"naturalSugar":6.18},
+      "macros":{"calories":266.8,"protein":28.65,"carbs":27.78,"fat":4.3,"fibre":0.3,"addedSugar":9,"naturalSugar":6.18},
       "details":[
         {"name":"FAGE 0% Greek Yogurt","amount":150,"unit":"g"},
         {"name":"MyProtein Origin Protein Chocolate Chip Cookie","amount":20,"unit":"g"},
-        {"name":"Myprotein Crispy Square Marshmallow","amount":1,"unit":"30g bar"}
+        {"name":"Kellogg's Rice Krispies Squares Chewy Tastic Marshmallow","amount":1,"unit":"item"}
       ]
     }
   ]
