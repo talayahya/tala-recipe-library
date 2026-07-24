@@ -116,6 +116,27 @@
         {"name":"Blueberries","amount":60,"unit":"g"},
         {"name":"Chocolate Bourbon Cream Biscuits","amount":3,"unit":"biscuits (66 kcal each)"}
       ]
+    },
+    {
+      "id":"chat-20260724-chicken-mayo-sandwich-01",
+      "date":"2026-07-24",
+      "label":"Chicken Mayo Sandwich",
+      "createdAt":"2026-07-24T11:15:00.000Z",
+      "macros":{"calories":396,"protein":27.5,"carbs":50.7,"fat":8.1,"fibre":5,"addedSugar":0,"naturalSugar":0,"totalSugar":4.6,"saturates":1.2,"salt":1.27},
+      "details":[
+        {"name":"Chicken Mayo Sandwich","amount":1,"unit":"pack"},
+        {"name":"Label values","amount":1,"unit":"pack: 396 kcal, 27.5g protein, 50.7g carbs, 8.1g fat, 5g fibre, 4.6g sugars, 1.2g saturates, 1.27g salt"}
+      ]
+    },
+    {
+      "id":"chat-20260724-costa-white-americano-vanilla-01",
+      "date":"2026-07-24",
+      "label":"Costa Machine White Americano with Vanilla Syrup",
+      "createdAt":"2026-07-24T11:20:00.000Z",
+      "macros":{"calories":77,"protein":0,"carbs":0,"fat":0,"fibre":0,"addedSugar":0,"naturalSugar":0},
+      "details":[
+        {"name":"Costa machine White Americano with Vanilla Syrup","amount":1,"unit":"drink (~77 kcal; macro breakdown not provided)"}
+      ]
     }
   ]
 }
