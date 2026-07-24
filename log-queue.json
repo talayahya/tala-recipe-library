@@ -131,11 +131,13 @@
     {
       "id":"chat-20260724-costa-white-americano-vanilla-01",
       "date":"2026-07-24",
-      "label":"Costa Machine White Americano with Vanilla Syrup",
+      "label":"Costa Express Regular White Americano with Vanilla Syrup",
       "createdAt":"2026-07-24T11:20:00.000Z",
-      "macros":{"calories":77,"protein":0,"carbs":0,"fat":0,"fibre":0,"addedSugar":0,"naturalSugar":0},
+      "macros":{"calories":76,"protein":4.9,"carbs":9.5,"fat":2.4,"fibre":0,"addedSugar":2.3,"naturalSugar":6.5,"totalSugar":8.8,"saturates":1.4,"salt":0.15},
       "details":[
-        {"name":"Costa machine White Americano with Vanilla Syrup","amount":1,"unit":"drink (~77 kcal; macro breakdown not provided)"}
+        {"name":"Costa Express Regular White Americano with Vanilla Syrup","amount":1,"unit":"drink"},
+        {"name":"Official Costa Express nutrition","amount":1,"unit":"76 kcal, 4.9g protein, 9.5g carbs, 2.4g fat, 8.8g sugars, 1.4g saturates, 0.15g salt"},
+        {"name":"Sugar split","amount":1,"unit":"estimated from official plain-versus-syrup rows: 2.3g added, 6.5g natural"}
       ]
     }
   ]
