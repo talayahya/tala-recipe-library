@@ -103,6 +103,19 @@
         {"name":"MyProtein Origin Protein Chocolate Chip Cookie","amount":20,"unit":"g"},
         {"name":"Kellogg's Rice Krispies Squares Chewy Tastic Marshmallow","amount":1,"unit":"item"}
       ]
+    },
+    {
+      "id":"chat-20260724-breakfast-yogurt-whey-blueberries-bourbons-01",
+      "date":"2026-07-24",
+      "label":"Breakfast: Yogurt, Whey, Blueberries & Bourbon Biscuits",
+      "createdAt":"2026-07-24T08:30:00.000Z",
+      "macros":{"calories":468.363,"protein":47.844,"carbs":44.3913,"fat":11.0265,"fibre":2.94,"addedSugar":12,"naturalSugar":13.2603},
+      "details":[
+        {"name":"FAGE 0% Greek Yogurt","amount":150,"unit":"g"},
+        {"name":"MyProtein Origin Protein Chocolate Chip Cookie","amount":1,"unit":"serving (47.7g)"},
+        {"name":"Blueberries","amount":60,"unit":"g"},
+        {"name":"Chocolate Bourbon Cream Biscuits","amount":3,"unit":"biscuits (66 kcal each)"}
+      ]
     }
   ]
 }
