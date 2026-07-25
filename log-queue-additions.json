@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "chat-20260725-yogurt-whey-chia-kelloggs-cornflakes-01",
+      "date": "2026-07-25",
+      "label": "Yogurt Bowl with Whey, Chia & Kellogg's Corn Flakes",
+      "createdAt": "2026-07-25T16:30:00.000Z",
+      "macros": {
+        "calories": 416.6,
+        "protein": 53.875,
+        "carbs": 40.805,
+        "fat": 3.95,
+        "fibre": 2.77,
+        "addedSugar": 2.8,
+        "naturalSugar": 7.8,
+        "totalSugar": 10.6
+      },
+      "details": [
+        {"name": "FAGE Total 0% Greek Yogurt", "amount": 200, "unit": "g"},
+        {"name": "Chia Seeds", "amount": 5, "unit": "g"},
+        {"name": "MyProtein Origin Protein Chocolate Chip Cookie", "amount": 1, "unit": "serving (47.7g; 5g creatine)"},
+        {"name": "Kellogg's Corn Flakes", "amount": 35, "unit": "g"}
+      ]
+    }
+  ]
+}
