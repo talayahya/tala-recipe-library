@@ -17,9 +17,16 @@
       const additions = await additionsResponse.json();
       if (!Array.isArray(additions)) return response;
 
-      const existingIds = new Set(base.map(item => item?.id));
+      const indexById = new Map(base.map((item, index) => [item?.id, index]));
       additions.forEach(item => {
-        if (item?.id && !existingIds.has(item.id)) base.push(item);
+        if (!item?.id) return;
+        const existingIndex = indexById.get(item.id);
+        if (existingIndex === undefined) {
+          indexById.set(item.id, base.length);
+          base.push(item);
+        } else {
+          base[existingIndex] = { ...base[existingIndex], ...item };
+        }
       });
 
       return new Response(JSON.stringify(base), {
