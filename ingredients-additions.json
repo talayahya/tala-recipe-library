@@ -10,5 +10,36 @@
     "fibre": 0.3,
     "addedSugar": 9,
     "naturalSugar": 0
+  },
+  {
+    "id": "fage-zero-yogurt",
+    "name": "FAGE Total 0% Greek Yogurt",
+    "unit": "100g",
+    "calories": 54,
+    "protein": 10.3,
+    "carbs": 3,
+    "fat": 0,
+    "fibre": 0,
+    "addedSugar": 0,
+    "naturalSugar": 3,
+    "totalSugar": 3,
+    "saturates": 0,
+    "salt": 0.1
+  },
+  {
+    "id": "kelloggs-corn-flakes",
+    "name": "Kellogg's Corn Flakes",
+    "unit": "100g",
+    "calories": 378,
+    "protein": 7,
+    "carbs": 84,
+    "fat": 0.9,
+    "fibre": 3,
+    "addedSugar": 0,
+    "naturalSugar": 0,
+    "totalSugar": 8,
+    "saturates": 0.2,
+    "salt": 1.1,
+    "sugarSplitVerified": false
   }
 ]
