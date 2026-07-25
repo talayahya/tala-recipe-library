@@ -1,5 +1,8 @@
 (() => {
-  const QUEUE_URL = 'https://raw.githubusercontent.com/talayahya/tala-recipe-library/main/log-queue.json';
+  const QUEUE_URLS = [
+    'https://raw.githubusercontent.com/talayahya/tala-recipe-library/main/log-queue.json',
+    'https://raw.githubusercontent.com/talayahya/tala-recipe-library/main/log-queue-additions.json'
+  ];
   const POLL_MS = 20000;
   let importing = false;
 
@@ -64,6 +67,13 @@
       normalizedTime(existing?.createdAt) === normalizedTime(incoming?.createdAt);
   }
 
+  async function readQueue(url) {
+    const response = await fetch(`${url}?v=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Queue fetch failed: ${response.status}`);
+    const payload = await response.json();
+    return Array.isArray(payload) ? payload : (Array.isArray(payload.entries) ? payload.entries : []);
+  }
+
   async function importQueue() {
     if (!ready() || importing) return;
     importing = true;
@@ -71,10 +81,8 @@
     let corrected = 0;
 
     try {
-      const response = await fetch(`${QUEUE_URL}?v=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Queue fetch failed: ${response.status}`);
-      const payload = await response.json();
-      const items = Array.isArray(payload) ? payload : (Array.isArray(payload.entries) ? payload.entries : []);
+      const queueItems = await Promise.all(QUEUE_URLS.map(readQueue));
+      const items = queueItems.flat();
 
       for (const item of items) {
         const candidate = candidateFromQueue(item);
