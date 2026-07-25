@@ -139,6 +139,47 @@
         {"name":"Official Costa Express nutrition","amount":1,"unit":"76 kcal, 4.9g protein, 9.5g carbs, 2.4g fat, 8.8g sugars, 1.4g saturates, 0.15g salt"},
         {"name":"Sugar split","amount":1,"unit":"estimated from official plain-versus-syrup rows: 2.3g added, 6.5g natural"}
       ]
+    },
+    {
+      "id":"chat-20260725-fridge-raiders-slow-roasted-3pack-01",
+      "date":"2026-07-25",
+      "label":"Fridge Raiders Slow Roasted Chicken Bites",
+      "createdAt":"2026-07-25T11:00:00.000Z",
+      "macros":{"calories":129,"protein":15,"carbs":2.1,"fat":6,"fibre":0,"addedSugar":0,"naturalSugar":0,"totalSugar":0.6,"saturates":1.8,"salt":1.2},
+      "details":[
+        {"name":"Fridge Raiders Slow Roasted Chicken Bites","amount":3,"unit":"mini packs (3 x 22.5g; 67.5g total)"}
+      ]
+    },
+    {
+      "id":"chat-20260725-sainsburys-chicken-salad-sandwich-01",
+      "date":"2026-07-25",
+      "label":"Sainsbury's Chicken Salad Sandwich",
+      "createdAt":"2026-07-25T11:05:00.000Z",
+      "macros":{"calories":396,"protein":27.5,"carbs":50.7,"fat":8.1,"fibre":5,"addedSugar":0,"naturalSugar":0,"totalSugar":4.6,"saturates":1.2,"salt":1.27},
+      "details":[
+        {"name":"Sainsbury's Chicken Salad Sandwich","amount":1,"unit":"pack"},
+        {"name":"Verified pack values","amount":1,"unit":"396 kcal, 27.5g protein, 50.7g carbs, 8.1g fat, 5g fibre, 4.6g sugars, 1.2g saturates, 1.27g salt"}
+      ]
+    },
+    {
+      "id":"chat-20260725-costa-white-americano-vanilla-01",
+      "date":"2026-07-25",
+      "label":"Costa Express Regular White Americano with Vanilla Syrup",
+      "createdAt":"2026-07-25T11:10:00.000Z",
+      "macros":{"calories":76,"protein":4.9,"carbs":9.5,"fat":2.4,"fibre":0,"addedSugar":2.3,"naturalSugar":6.5,"totalSugar":8.8,"saturates":1.4,"salt":0.15},
+      "details":[
+        {"name":"Costa Express Regular White Americano with Vanilla Syrup","amount":1,"unit":"drink"}
+      ]
+    },
+    {
+      "id":"chat-20260725-bourbon-biscuits-3-01",
+      "date":"2026-07-25",
+      "label":"Chocolate Bourbon Cream Biscuits — 3",
+      "createdAt":"2026-07-25T11:15:00.000Z",
+      "macros":{"calories":198,"protein":2.4,"carbs":27,"fat":8.7,"fibre":1.5,"addedSugar":12,"naturalSugar":0,"totalSugar":12,"saturates":5.1,"salt":0.3},
+      "details":[
+        {"name":"Chocolate Bourbon Cream Biscuits","amount":3,"unit":"biscuits (66 kcal each)"}
+      ]
     }
   ]
 }
