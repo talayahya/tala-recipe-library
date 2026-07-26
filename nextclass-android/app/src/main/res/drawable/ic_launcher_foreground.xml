@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Clock face -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,30 m-20,0 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0" />
+    <path
+        android:fillColor="#7A5AF8"
+        android:pathData="M54,30 m-15,0 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0" />
+    <!-- Clock hands -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M53,19 h2 v11 h-2 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,29 h9 v2 h-9 z" />
+    <!-- Book base -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,58 h40 v6 h-40 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,68 h40 v4 h-40 z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,76 h28 v4 h-28 z" />
+</vector>

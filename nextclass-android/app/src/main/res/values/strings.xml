@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NextClass</string>
+    <string name="in_school_toggle">I\'m in School</string>
+    <string name="in_school_toggle_desc_on">In-school notifications are on. Tap to stop all upcoming-class alerts.</string>
+    <string name="in_school_toggle_desc_off">In-school notifications are off. Tap to arm alerts for every remaining class today.</string>
+    <string name="notification_channel_name">Upcoming class alerts</string>
+    <string name="notification_channel_desc">Notifies you a few minutes before each subject begins.</string>
+    <string name="settings">Settings</string>
+</resources>
